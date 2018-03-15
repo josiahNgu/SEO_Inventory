@@ -98,15 +98,18 @@ insert into Item (categoryId,itemName,qty,price,itemStatus,supplier,category) va
 insert into UserInfo (email,firstName,lastName,creationTime,addressId) 
 values ('seo@gmail.com','Bill','Gates',CURRENT_TIMESTAMP,(select addressId from Address where street = '123 St' AND city = 'Lincoln' AND zipcode = '68508' AND country = 'USA'));
 insert into UserInfo (email,firstName,lastName,creationTime,addressId) 
-values ('clark2018@gmail.com','Jasaon','Clark',CURRENT_TIMESTAMP,(select addressId from Address where street = '19 Bowman St' AND city = 'Melbourne' AND zipcode = '32904' AND country = 'USA'));
-
+values ('clark2018@gmail.com','Jason','Clark',CURRENT_TIMESTAMP,(select addressId from Address where street = '19 Bowman St' AND city = 'Melbourne' AND zipcode = '32904' AND country = 'USA'));
+insert into UserInfo (email,firstName,lastName,creationTime,addressId) 
+values ('Roland2107@gmail.com','Roland','Kim',CURRENT_TIMESTAMP,(select addressId from Address where street = '18th St' AND city = 'Lincoln' AND zipcode = '68508' AND country = 'USA'));
 #update user info (Note: email can't be updated, as it's foreign key for UserInfo table)
 UPDATE UserInfo SET lastName = 'Clington' where email = 'seo@gmail.com';
 UPDATE UserInfo SET lastName = 'Brown' where email = 'clark2018@gmail.com';
+UPDATE UserInfo SET lastName = 'Clay' where email = 'Roland2107@gmail.com';
 
 #update address info 
 UPDATE Address SET street = '321 St' where addressId = (select addressId from UserInfo where email = 'seo@gmail.com');
 UPDATE Address SET street = '15 Bowman St' where addressId = (select addressId from UserInfo where email = 'clark2018@gmail.com');
+UPDATE Address SET street = 'Blue St' where addressId = (select addressId from UserInfo where email = 'Roland2107@gmail.com');
 
 
 
