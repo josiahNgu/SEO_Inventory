@@ -11,9 +11,92 @@ var mysql = require('mysql');
 
 var con = mysql.createConnection({
   host: "localhost",
-  user: "yourusername",
-  password: "yourpassword"
+  user: "tsim",
+  password: "60619312"
 });
+
+var middleware = {
+
+    render: function (view) {
+        return function (req, res, next) {
+            res.render(view);
+        }
+    },
+
+    globalLocals: function (req, res, next) {
+        res.locals(
+            user: {
+                email: '',
+                password: '',
+                currCategory: ''
+            },
+            values: {
+                subCategories: getSubcategories(user.email, user.password, user.currCategory),
+                itemNames: getItemNames(user.email, user.password, user.currCategory),
+                qtys: getQtys(user.email, user.password, user.currCategory),
+                prices: getPrices(user.email, user.password, user.currCategory),
+                suppliers: getSuppliers(user.email, user.password, user.currCategory),
+                statuss: getStatuss(user.email, user.passwd, user.currCategory)
+            }
+        );
+        next();
+    },
+
+    index: function (req, res, next) {
+        res.locals({
+            indexSpecificData: someData
+        });
+        next();
+    }
+
+};
+
+
+app.locals({
+    user: {
+        email: '',
+        password: '',
+        currCategory: ''
+    },
+    values: {
+        subCategories: getSubcategories(user.email, user.password, user.currCategory),
+        itemNames: getItemNames(user.email, user.password, user.currCategory),
+        qtys: getQtys(user.email, user.password, user.currCategory),
+        prices: getPrices(user.email, user.password, user.currCategory),
+        suppliers: getSuppliers(user.email, user.password, user.currCategory),
+        statuss: getStatuss(user.email, user.passwd, user.currCategory)
+    }
+});
+
+function setUserEPC(email, password, category) {
+    user.email = email;
+    user.password = password;
+    user.currCategory = category;
+}
+
+function getSubcategories(email, passwd, curr) {
+    return 'sub1,sub2';
+}
+
+function getItemNames(email, passwd, curr) {
+    return 'item1,item2,item3';
+}
+
+function getQtys(email, passwd, curr) {
+    return '1,2,3';
+}
+
+function getPrices(email, passwd, curr) {
+    return '1.00,2.00,3.00';
+}
+
+function getSuppliers(email, passwd, curr) {
+    return 'sup1,sup2,sup3';
+}
+
+function getStatuss(email, passwd, curr) {
+    return 'Low,Good,Good';
+}
 
 function Address(street, city, state, country, zip) {
     this.street = street;
@@ -58,23 +141,7 @@ function setEmail(email) {
 }
 
 function getEmail() {
-    // try {
-    //     // Create an instance of StreamReader to read from a file.
-    //     sr = new StreamReader("email.txt");
-    //     // Read and display lines from the file until the end of the file is reached.
-    //     line = sr.ReadLine();
-    //     while (line != null) {
-    //         line = sr.ReadLine();
-    //     }
-    //     sr.Close();
-    //     return line;
-    // }
-    // catch (e) {
-    //     // Let the user know what went wrong.
-    //     print("The file could not be read:");
-    //     print(e.Message);
-    // }
-    return;
+    return user.email;
 }
 function setCategory(category) {
     // sw = new StreamWriter("email.txt");
@@ -100,13 +167,12 @@ function getCategory() {
     //     print("The file could not be read:");
     //     print(e.Message);
     // }
-    return;
+    return user.currCategory;
 }
 
 function login(email, password) {
     if(userExists(email, password)) {
-        setEmail(email);
-        setCategory("");
+        setUserEPC(email, password, '');
         window.open("home.html", "_self");
     } else {
         window.open("login.html", "_self");
@@ -114,7 +180,7 @@ function login(email, password) {
 }
 
 function logout() {
-    
+
 }
 
 function userExists(email, password) {
