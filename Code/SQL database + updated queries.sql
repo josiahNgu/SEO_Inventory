@@ -136,3 +136,4 @@ select * from Category where categoryId = (select categoryId from Inventory wher
 #get Item of a user given a categoryName
 select * from Item where CategoryId = (select categoryId from Category where categoryName = 'Furnitures');
 select * from Item where CategoryId = (select categoryId from Category where categoryName = 'Electronics');
+#get Item of a user given an email
