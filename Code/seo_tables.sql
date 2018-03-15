@@ -1,4 +1,7 @@
 USE tsim;
+
+##password for database: 60619312
+
 DROP TABLE IF EXISTS Item;
 DROP TABLE IF EXISTS Category;
 DROP TABLE IF EXISTS Inventory;
@@ -10,6 +13,7 @@ CREATE TABLE Address (
 	addressId int not null auto_increment,
     street varchar(255),
     city varchar(255),
+	state varchar(255),
     zipcode varchar(255),
     country varchar(255),
     CONSTRAINT PK_Address PRIMARY KEY (addressId)
@@ -30,6 +34,7 @@ CREATE TABLE UserInfo (
     firstName varchar(225) NOT NULL,
     middleName VARCHAR(225),
     lastName varchar(225) NOT NULL,
+    phoneNumber varchar(225),
     #creationDate DATE NOT NULL,
     creationTime TIMESTAMP NOT NULL,
     addressId int NOT NULL,
