@@ -84,13 +84,16 @@ insert into Address (street,city,zipcode,country) values ('18th St','Lincoln','6
 #insert info into Inventory
 insert into Inventory (inventoryName, email) values ('firstInventory','clark2018@gmail.com');
 insert into Inventory (inventoryName, email) values ('MyInventory','Roland2107@gmail.com');
+insert into Inventory (inventoryName, email) values ('Inventory1', 'seo@gmail.com');
 
 #insert info into Category
-insert into Category (categoryName,inventoryId,parentCategory) values ('Furnitures',1,1);
-insert into Category (categoryName,inventoryId,parentCategory) values ('Electronics',1,NULL);
+insert into Category (categoryName,inventoryId,parentCategory) values ('Furnitures',2,1);
+insert into Category (categoryName,inventoryId,parentCategory) values ('Electronics',3,NULL);
+insert into Category (categoryName,inventoryId,parentCategory) values ('Food',4,NULL);]
+insert into Category (categoryName,inventoryId,parentCategory) values (NULL,1,NULL);
 #insert info into Item
-insert into Item (categoryId,itemName,qty,price,itemStatus,supplier,category) values ('1','sofa','5','299','1','ComfyHome',NULL);
-
+insert into Item (categoryId,itemName,qty,price,itemStatus,supplier,category) values ('1','sofa','5','299','1','ComfyHome','Furnitures');
+insert into Item (categoryId,itemName,qty,price,itemStatus,supplier,category) values ('2','smartphone',7,'899','1','Sony','Electronics');
 #insert user info (Note: information in address has to be repeated to get the correct addressId)
 insert into UserInfo (email,firstName,lastName,creationTime,addressId) 
 values ('seo@gmail.com','Bill','Gates',CURRENT_TIMESTAMP,(select addressId from Address where street = '123 St' AND city = 'Lincoln' AND zipcode = '68508' AND country = 'USA'));
@@ -123,6 +126,7 @@ select * from Address where addressId = (select addressId from UserInfo where em
 #get Inventory of a user given an email
 select * from Inventory where email = 'clark2018@gmail.com';
 select * from Inventory where email = 'Roland2107@gmail.com';
+select * from Inventory where email = 'seo@gmail.com';
 #get Category of a user given an email
 select * from Category where categoryId = (select categoryId from Inventory where email = 'clark2018@gmail.com');
 select * from Category where categoryId = (select categoryId from Inventory where email = 'Roland2107@gmail.com');
