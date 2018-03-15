@@ -88,8 +88,8 @@ insert into Inventory (inventoryName, email) values ('Inventory1', 'seo@gmail.co
 
 #insert info into Category
 insert into Category (categoryName,inventoryId,parentCategory) values ('Furnitures',2,1);
-insert into Category (categoryName,inventoryId,parentCategory) values ('Electronics',3,NULL);
-insert into Category (categoryName,inventoryId,parentCategory) values ('Food',4,NULL);]
+insert into Category (categoryName,inventoryId,parentCategory) values ('Electronics',3,1);
+insert into Category (categoryName,inventoryId,parentCategory) values ('Food',4,1);
 insert into Category (categoryName,inventoryId,parentCategory) values (NULL,1,NULL);
 #insert info into Item
 insert into Item (categoryId,itemName,qty,price,itemStatus,supplier,category) values ('1','sofa','5','299','1','ComfyHome','Furnitures');
