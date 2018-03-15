@@ -106,7 +106,7 @@ UPDATE UserInfo SET lastName = 'Brown' where email = 'clark2018@gmail.com';
 
 #update address info 
 UPDATE Address SET street = '321 St' where addressId = (select addressId from UserInfo where email = 'seo@gmail.com');
-UPDATE Address SET street = '19 Bowman St' where addressId = (select addressId from UserInfo where email = 'clark2018@gmail.com');
+UPDATE Address SET street = '15 Bowman St' where addressId = (select addressId from UserInfo where email = 'clark2018@gmail.com');
 
 
 
