@@ -1,95 +1,139 @@
 <!DOCTYPE html>
 <html>
-<input id="category" hidden>
-<input id='email' hidden>
-<head>
-    <!-- all the style for home has been moved to homepageStyle.css-->
-    <meta charset="utf-8"/>
-    <title>SEOinventory</title>
-    <link rel ="stylesheet" href ="homepageStyle.css">
-    <script language="javascript" type="text/javascript" src="seo.js">
-    
-    </script>
-</head>
-<body>
-    <p id="nameCorner">SEOinventory</p>
-    <p id="currentDirectory" />
-    <div class="home-page">
-        <!--register an account form-->
-        <div class="corner">
+   <input id="category" hidden>
+   <input id='email' hidden>
+   <head>
+      <!-- all the style for home has been moved to homepageStyle.css-->
+      <meta charset="utf-8"/>
+      <title>SEOinventory</title>
+      <link rel ="stylesheet" href ="homepageStyle.css">
+      <script language="javascript" type="text/javascript" src="seo.js"></script>
+   </head>
+   <body>
+      <p id="nameCorner">SEOinventory</p>
+      <p id="currentDirectory" />
+      <div class="home-page">
+         <!--register an account form-->
+         <div class="corner">
             <button type="button" onclick="location.href='login.html';" style="padding:4px;width:100%">LogOut</button>
             <divider></divider>
             <button type="button" onclick="location.href='userSettings.html';" style="padding:4px;width:100%">Settings</button>
             <divider></divider>
             <button type="button" onclick="funky();">Try it out!</button>
-        </div>
-        <div class="inventory"></div>
-    </div>    
-        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-
-        <!--function to bring up sign up page or login page when user click on the href of sign up and sign in-->
-        <script>
-        document.getElementById("email").value = getEmail();
-        function funky() {
-            alert(document.getElementById('email').value);
-            return;
-        }
-        // var categories =  getCategories(email, document.getElementById('email').value);
-        // for (i in categories) {
-        //     var category = document.createElement("category");
-        //     category.name = i.name;
-        // }
-        // var items = getItems(email, category);
-        // for (i in items) {
-        //     var item = document.createElement("item");
-        //     item.name = i.name;
-        //     item.qty = i.qty;
-        //     item.status = i.status;
-        //     item.supplier = i.supplier;
-        // }
-        $('.message a').click(function(){
-            $('form').animate({height: "toggle",opacity:"toggle"});
-        });
-
-        </script>
-
-        </div>
-        <button id="addItem" class="button">ADD</button>
-
-        <div id="simpleModal" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                <span class="closeBtn">&times;</span>
-                <h2>Add Item</h2>
-                </div>
-            <form class="addItem">
-                Item Name <br>
-                <input type="text" name="itemName" /> <br>
-                
-                Quantity <br>
-                <input type="number" min="0" name="quantity" /><br>
-
-                price<br>
-                <input type="number" min="0" name="price" /><br>
-                
-                Item Status<br>
-                <input type="text" name="itemStatus" /><br>
-                
-                supplier<br>
-                <input type="text" name="supplier" /><br>
-
-                category<br>
-                <input type="text" name="category" /><br>
-                
-                <button id="add" type ="submit">Add</a></button>
-
+         </div>
+         <div class="inventory"></div>
+      </div>
+      <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+      <!--function to bring up sign up page or login page when user click on the href of sign up and sign in-->
+      <script>
+         document.getElementById("email").value = getEmail();
+         function funky() {
+             alert(document.getElementById('email').value);
+             return;
+         }
+         // var categories =  getCategories(email, document.getElementById('email').value);
+         // for (i in categories) {
+         //     var category = document.createElement("category");
+         //     category.name = i.name;
+         // }
+         // var items = getItems(email, category);
+         // for (i in items) {
+         //     var item = document.createElement("item");
+         //     item.name = i.name;
+         //     item.qty = i.qty;
+         //     item.status = i.status;
+         //     item.supplier = i.supplier;
+         // }
+         $('.message a').click(function(){
+             $('form').animate({height: "toggle",opacity:"toggle"});
+         });
+         
+      </script>
+      </div>
+      <!--add Item button -->
+      <button id="addItem" class="button">ADD</button>
+      <div id="simpleModal" class="modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <span class="closeBtn">&times;</span>
+               <h2>Add Item</h2>
+            </div>
+            <form class="Item">
+               Item Name <br>
+               <input type="text" name="itemName" /> <br>
+               Quantity <br>
+               <input type="number" min="0" name="quantity" /><br>
+               price<br>
+               <input type="number" min="0" name="price" /><br>
+               Item Status<br>
+               <input type="text" name="itemStatus" /><br>
+               supplier<br>
+               <input type="text" name="supplier" /><br>
+               category<br>
+               <input type="text" name="category" /><br>
+               <button id="add" type ="submit">Add</a></button>
             </form>
             <script src="home.js"></script>
-
+         </div>
+      </div>
+      <!-- add category button -->
+      <button id ="catgyBtn" class="button" > Add category</button>    
+      <div id="categoryModal" class="modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h2>Add Category</h2>
+               <span class="catClose">&times;</span>
             </div>
-        </div>
-
-
-
-</body>
+            <form class="addCategory">
+               Category Name <br>
+               <input type="text" name="catgyName"/> <br>
+               <button id="addCatgy" type ="submit">Add</a></button>
+            </form>
+            <script src ="home.js"></script>
+         </div>
+      </div>
+      <!-- edit category Name button-->
+      <button id ="editCategoryN" class="button" > Edit</button>    
+      <div id="editCategoryMdl" class="modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h2>Edit Category name</h2>
+               <span class="EcatClose">&times;</span>
+            </div>
+            <form class="editCatgyName">
+               Category Name <br>
+               <input type="text" name="newCatgyN"/> <br>
+               <button id="updateCatgyN" type ="submit">Update</a></button>
+            </form>
+            <script src ="home.js"></script>
+         </div>
+      </div>
+      <!-- edit current Item button-->
+      <button id="editItem" class="button">edit</button>
+      <div id="editItemModal" class="modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <span class="editItemClose">&times;</span>
+               <h2>Edit Item</h2>
+            </div>
+            <form class="editItem">
+               Item Name <br>
+               <input type="text" name="itemName" /> <br>
+               Quantity <br>
+               <input type="number" min="0" name="quantity" /><br>
+               price<br>
+               <input type="number" min="0" name="price" /><br>
+               Item Status<br>
+               <input type="text" name="itemStatus" /><br>
+               supplier<br>
+               <input type="text" name="supplier" /><br>
+               category<br>
+               <input type="text" name="category" /><br>
+               <button id="updateItem" type ="submit">Update</a></button>
+            </form>
+            <script src="home.js"></script>
+         </div>
+      </div>
+      <div class="table"> </div>
+   </body>
 </html>
