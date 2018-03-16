@@ -23,9 +23,9 @@ line-height: 1.6;
     color: goldenrod;
     font-size: 14px;
     cursor: pointer;
- position: absolute;
-    top: 50%;
-    left: 10px;
+ position: relative;
+ top: 190px;
+ left: 290px;
 
 }
 #editItem  {
@@ -38,9 +38,9 @@ line-height: 1.6;
   color: goldenrod;
   font-size: 14px;
   cursor: pointer;
-position: absolute;
-  top: 50%;
-  left: 40%;
+position: relative;
+top: 190px;
+left: 300px;
 
 }
 
@@ -54,9 +54,9 @@ position: absolute;
   color: goldenrod;
   font-size: 14px;
   cursor: pointer;
-position: absolute;
-  top: 50%;
-  left: 20%;
+position: relative;
+  top: 190px;
+  left:400px;
 
 }
 #editCategoryN {
@@ -69,20 +69,19 @@ position: absolute;
   color: goldenrod;
   font-size: 14px;
   cursor: pointer;
-position: absolute;
-  top: 50%;
-  left: 30%;
+position: relative;
+top: 190px;
+left:600px;
 
 }
 .table{
-  position: fixed;
+  position: relative;
   top: 50%;
   left: 50%;
-  margin-top: -50px;
-  margin-left: -100px;
+  width: 50%;
   border: solid goldenrod 3px;
   transform: translate(-50%, -50%);
-  padding:  5% 25% 25% 25%;
+  padding:  5% 10% 25% 10%;
 }
 #addItem:hover,#catgyBtn:hover, #editCategoryN:hover , #editItem:hover{
   background:black;
