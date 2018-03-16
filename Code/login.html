@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <title>SEOinventory</title>
     <link rel ="stylesheet" href ="style.css">
-    <script type="text/javascript" src="seo.js"></script>
+    <script src="seo.js"></script>\
 </head>
 <body>
     <p id="topForm">SEOinventory</p>
@@ -15,11 +15,11 @@
             <input type="text" placeholder="email" id='email'/>
             <input type="password" placeholder="password" id='pw1'/>
             <input type="password" placeholder="password again" id='pw2'/>
-            <button type="button" onclick="signup(document.getElementById('email').value,document.getElementById('pw1').value,document.getElementById('pw2').value);">Sign up</button>
+            <input type="submit" onclick="signup(document.getElementById('email').value,document.getElementById('pw1').value,document.getElementById('pw2').value);">Sign up</button>
             <p class="message">Have an account? <a href="#">Log In</a></p>
         </form>
         <!--login form-->
-        <form class="login-form" action="submit-login" method="POST">
+        <form class="login-form">
             <input type="text" placeholder="email" id='email'/>
             <input type="password" placeholder="password" id='pw'/>
             <button type="button" onclick="login(document.getElementById('email').value,document.getElementById('pw').value);">Login</a></button>
@@ -28,7 +28,7 @@
         </div>
     </div>    
       <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-      <!--function to bring up sign up page or login page when user click on the href of sign up and sign in-->
+      <!--function to bring up sign up page or login page when user click on the href of sign up and sign in    login(document.getElementById('email').value,document.getElementById('pw').value);-->
       <script>
       localStorage.setItem("lastname", "Smith");
       $('.message a').click(function(){

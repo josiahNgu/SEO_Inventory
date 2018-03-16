@@ -1,8 +1,7 @@
 var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
-var global_email = '';
-var global_category = '';
+var session = require('client-sessions');
 
 app.set('view_enginer', 'ejs');
 server.listen(process.env.PORT || 3000);
@@ -10,68 +9,60 @@ server.listen(process.env.PORT || 3000);
 var mysql = require('mysql');
 
 var con = mysql.createConnection({
-  host: "localhost",
+  host: "cse.unl.edu",
   user: "tsim",
   password: "60619312"
 });
 
-var middleware = {
-
-    render: function (view) {
-        return function (req, res, next) {
-            res.render(view);
-        }
-    },
-
-    globalLocals: function (req, res, next) {
-        res.locals(
-            user: {
-                email: '',
-                password: '',
-                currCategory: ''
-            },
-            values: {
-                subCategories: getSubcategories(user.email, user.password, user.currCategory),
-                itemNames: getItemNames(user.email, user.password, user.currCategory),
-                qtys: getQtys(user.email, user.password, user.currCategory),
-                prices: getPrices(user.email, user.password, user.currCategory),
-                suppliers: getSuppliers(user.email, user.password, user.currCategory),
-                statuss: getStatuss(user.email, user.passwd, user.currCategory)
-            }
-        );
-        next();
-    },
-
-    index: function (req, res, next) {
-        res.locals({
-            indexSpecificData: someData
+function insertDB (query) {
+    con.connect(function(err) {
+        if (err) throw err;
+        console.log("Connected!");
+        var sql = query;
+        con.query(sql, function (err, result) {
+        if (err) throw err;
         });
-        next();
-    }
+    });
+    return;
+}
 
-};
+function selectDB (query) {
+    con.connect(function(err) {
+        if (err) throw err;
+        con.query(query, function (err, result, fields) {
+          if (err) throw err;
+          return result;
+        });
+    });
+}
 
-
-app.locals({
-    user: {
-        email: '',
-        password: '',
-        currCategory: ''
-    },
-    values: {
-        subCategories: getSubcategories(user.email, user.password, user.currCategory),
-        itemNames: getItemNames(user.email, user.password, user.currCategory),
-        qtys: getQtys(user.email, user.password, user.currCategory),
-        prices: getPrices(user.email, user.password, user.currCategory),
-        suppliers: getSuppliers(user.email, user.password, user.currCategory),
-        statuss: getStatuss(user.email, user.passwd, user.currCategory)
-    }
-});
+function updateDB (query) {
+    con.connect(function(err) {
+        if (err) throw err;
+        var sql = query;
+        con.query(sql, function (err, result) {
+          if (err) throw err;
+        });
+      });
+}
 
 function setUserEPC(email, password, category) {
-    user.email = email;
-    user.password = password;
-    user.currCategory = category;
+    req.session.email = email;
+    req.session.password = password;
+    req.session.currCategory = category;
+    req.session.subcategories = getSubcategories(email, password, category);
+    req.session.itemName = getItemNames(email, password, category);
+    req.session.qtys = getQtys(email, password, category);
+    req.session.pricse = getPrices(email, password, category);
+    req.session.suppliers = getSuppliers(email, password, category);
+}
+
+function getEmail() {
+    return req.session.email;
+}
+
+function getCurrCategory() {
+    return req.session.currCategory;
 }
 
 function getSubcategories(email, passwd, curr) {
@@ -98,85 +89,15 @@ function getStatuss(email, passwd, curr) {
     return 'Low,Good,Good';
 }
 
-function Address(street, city, state, country, zip) {
-    this.street = street;
-    this.city = city;
-    this.state = state;
-    this.country = country;
-    this.zip = zip;
-}
-
-function User(email, password) {
-    this.email = email;
-    this.password = password;
-}
-
-function UserInfo(firstName, middleName, lastName, phoneNumber, notifications) {
-    this.firstName = firstName;
-    this.middleName = middleName;
-    this.lastName = lastName;
-    this.phoneNumber;
-    this.notifications;
-}
-
-function Category(name, subcategories, items) {
-    this.name = name;
-    this. subcategories = subcategories;
-    this.items = items;
-}
-
-function Item(name, qty, price, status, supplier) {
-    this.name = name;
-    this.qty = qty;
-    this.price = price;
-    this.status = status;
-    this.supplier = supplier;
-}
-
-function setEmail(email) {
-    // sw = new StreamWriter("email.txt");
-    // sw.Write(email);
-    // sw.Close();
-    return;
-}
-
-function getEmail() {
-    return user.email;
-}
-function setCategory(category) {
-    // sw = new StreamWriter("email.txt");
-    // sw.Write(category);
-    // sw.Close();
-    return;
-}
-
-function getCategory() {
-    // try {
-    //     // Create an instance of StreamReader to read from a file.
-    //     sr = new StreamReader("category.txt");
-    //     // Read and display lines from the file until the end of the file is reached.
-    //     line = sr.ReadLine();
-    //     while (line != null) {
-    //         line = sr.ReadLine();
-    //     }
-    //     sr.Close();
-    //     return line;
-    // }
-    // catch (e) {
-    //     // Let the user know what went wrong.
-    //     print("The file could not be read:");
-    //     print(e.Message);
-    // }
-    return user.currCategory;
-}
-
 function login(email, password) {
-    if(userExists(email, password)) {
-        setUserEPC(email, password, '');
-        window.open("home.html", "_self");
-    } else {
-        window.open("login.html", "_self");
-    }
+    setUserEPC(email, password, '');
+    window.open("home.html", "_self");
+    // if(userExists(email, password)) {
+    //     setUserEPC(email, password, '');
+    //     window.open("home.html", "_self");
+    // } else {
+    //     window.open("login.html", "_self");
+    // }
 }
 
 function logout() {
