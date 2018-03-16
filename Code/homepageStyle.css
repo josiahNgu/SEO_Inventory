@@ -24,7 +24,7 @@ line-height: 1.6;
     font-size: 14px;
     cursor: pointer;
  position: relative;
- top: 120px;
+ top: 190px;
  left: 290px;
 
 }
@@ -39,7 +39,7 @@ line-height: 1.6;
   font-size: 14px;
   cursor: pointer;
 position: relative;
-top: 120px;
+top: 190px;
 left: 300px;
 
 }
@@ -55,7 +55,7 @@ left: 300px;
   font-size: 14px;
   cursor: pointer;
 position: relative;
-  top: 120px;
+  top: 190px;
   left:400px;
 
 }
@@ -70,18 +70,17 @@ position: relative;
   font-size: 14px;
   cursor: pointer;
 position: relative;
-top: 120px;
+top: 190px;
 left:600px;
 
 }
 .table{
-  position: relative;
-  top: 50%;
+  position: absolute;
+  top:50%;
   left: 50%;
-  width: 50%;
+  width: 60%;
   border: solid goldenrod 3px;
   transform: translate(-50%, -50%);
-  padding:  5% 10% 25% 10%;
 }
 #addItem:hover,#catgyBtn:hover, #editCategoryN:hover , #editItem:hover{
   background:black;
@@ -324,4 +323,17 @@ input[type = text], input[type = number] {
   width: 400px;
   padding: 10% 0 0;
   margin: auto; 
+}
+table, td, th {    
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 15px;
 }
