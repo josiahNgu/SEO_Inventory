@@ -61,17 +61,17 @@
             <form class="Item">
                Item Name <br>
                <input type="text" name="itemName" /> <br>
-               Quantity <br>
-               <input type="number" min="0" name="quantity" /><br>
                price<br>
+               <input type="text" name="itemStatus" /><br>
+               Quantity <br>
                <input type="number" min="0" name="price" /><br>
                Item Status<br>
-               <input type="text" name="itemStatus" /><br>
+               <input type="number" min="0" name="quantity" /><br>
                supplier<br>
                <input type="text" name="supplier" /><br>
                category<br>
                <input type="text" name="category" /><br>
-               <button id="add" type ="submit">Add</a></button>
+               <button id="add" type ="submit" onclick="saveItem()">Add</a></button>
             </form>
             <script src="home.js"></script>
          </div>
@@ -87,7 +87,7 @@
             <form class="addCategory">
                Category Name <br>
                <input type="text" name="catgyName"/> <br>
-               <button id="addCatgy" type ="submit">Add</a></button>
+               <button id="addCatgy" type ="submit" onclick="saveCategory()">Add</a></button>
             </form>
             <script src ="home.js"></script>
          </div>
@@ -103,7 +103,7 @@
             <form class="editCatgyName">
                Category Name <br>
                <input type="text" name="newCatgyN"/> <br>
-               <button id="updateCatgyN" type ="submit" onclick="console.log(123)">Update</a></button>
+               <button id="updateCatgyN" type ="submit" onclick="saveCategory()">Update</a></button>
             </form>
             <script src ="home.js"></script>
          </div>
@@ -119,24 +119,36 @@
             <form class="editItem">
                Item Name <br>
                <input type="text" name="itemName" /> <br>
-               Quantity <br>
-               <input type="number" min="0" name="quantity" /><br>
                price<br>
                <input type="number" min="0" name="price" /><br>
+               Quantity <br>
+               <input type="number" min="0" name="quantity" /><br>
                Item Status<br>
                <input type="text" name="itemStatus" /><br>
                supplier<br>
                <input type="text" name="supplier" /><br>
                category<br>
                <input type="text" name="category" /><br>
-               <button id="updateItem" type ="submit">Update</a></button>
+               <button id="updateItem" type ="submit" onclick='saveItem();'>Update</a></button>
             </form>
             <script src="home.js"></script>
          </div>
       </div>
-      <div class="table">
-        <p> </p>      
-    
+      <div class="table">  
+            <h1>Database</h1>
+            <table class="data-table">
+                <caption class="title">Category</caption>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Item status</th>
+                    </tr>
+                    <script></script>
+                </thead>
+                <tbody>
+
     </div>
    </body>
 </html>
