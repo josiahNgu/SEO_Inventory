@@ -50,6 +50,7 @@ function setUserEPC(email, password, category) {
     req.session.email = email;
     req.session.password = password;
     req.session.currCategory = category;
+    req.session.inventoryId = getInventoryId(email);
     req.session.subcategories = getSubcategories(email, password, category);
     req.session.itemName = getItemNames(email, password, category);
     req.session.qtys = getQtys(email, password, category);
@@ -63,6 +64,10 @@ function getEmail() {
 
 function getCurrCategory() {
     return req.session.currCategory;
+}
+
+function getInventoryId(email) {
+    return selectDB();
 }
 
 function getSubcategories(email, passwd, curr) {
@@ -92,12 +97,6 @@ function getStatuss(email, passwd, curr) {
 function login(email, password) {
     setUserEPC(email, password, '');
     window.open("home.html", "_self");
-    // if(userExists(email, password)) {
-    //     setUserEPC(email, password, '');
-    //     window.open("home.html", "_self");
-    // } else {
-    //     window.open("login.html", "_self");
-    // }
 }
 
 function logout() {
@@ -110,29 +109,36 @@ function userExists(email, password) {
 
 function signup(email, password1, password2) {
     if ( (password1 == password2) && (password1 != '') && (password2 != '') && email.includes('@')) {
-        user = new User(email, password1);
-        createUser(user);
-        setEmail(email);
-        setCategory("");
+        createUser(email, password1);
+        setUserEPC(email, password1, '');
         window.open('userSettings.html', "_self");
     }else{
         window.open("login.html", "_self");
     }
 }
 
-function createUser(user) {
+function createUser(email, password) {
     //mysql insert
+    insertDB('insert into User (email,passwd) values ('+email+','+password+');');
 }
 
-function isUser() {
-    return true;
-}
-
-function saveUserSettings(firstName, middleName, lastName, phoneNumber, notifications, street, city, state, zip, country) {
-    if(addressExists(street, city, state, zip, country)) {
-        addressId = getAddress(street, city, state, zip, country);
+function isUser(email, password) {
+    realPassword = selectDB('select passwd from User where email = '+email+';');
+    if(realPassword == '') {
+        return false;
+    }
+    if(password == realPassword) {
+        return true;
     }else{
-        addressId = insertAddress(street, city, state, zip, country);
+        return false;
+    };
+}
+
+function saveUserSettings(firstName, middleName, lastName, phoneNumber, notifications, street, city, state, zip, country, email, parentCatetgory) {
+    if(addressExists(street, city, state, zip, country, email, parentCatetgory)) {
+        updateAddress(street, city, state, zip, country, email, parentCatetgory);
+    }else{
+        addressId = insertAddress(street, city, state, zip, country, email, parentCatetgory);
     }
     if(userInfoExists(firstName, middleName, lastName, phoneNumber, notifications)) {
         updateUserInfo(firstName, middleName, lastName, phoneNumber, notifications);
@@ -142,78 +148,84 @@ function saveUserSettings(firstName, middleName, lastName, phoneNumber, notifica
     window.open('userSettings.html', "_self");
 }
 
-function addressExists(street, city, state, zip, country) {
-    return true;
+function addressExists(street, city, state, zip, country, email, parentCatetgory) {
+    if(selectDB() == "") {
+        return false;
+    }else{
+        return true;
+    };
 }
 
-function getAddress(street, city, state, zip, country) {
-    return 0;
+function updateAddress(street, city, state, zip, country, email, parentCatetgory) {
+    updateDB();
 }
 
-function insertAddress(street, city, state, zip, country) {
-    return 0;
+function insertAddress(street, city, state, zip, country, email, parentCatetgory) {
+    insertDB();
 }
 
-function userInfoExists(firstName, middleName, lastName, phoneNumber, notifications) {
-    return true;
+function userInfoExists(firstName, middleName, lastName, phoneNumber, notifications, email, parentCatetgory) {
+    if( selectDB('select * from UserInfo where email = '+email+';)') == "") {
+        return false;
+    }else{
+        return true;
+    }
 }
 
-function updateUserInfo(firstName, middleName, lastName, phoneNumber, notifications) {
-
+function updateUserInfo(firstName, middleName, lastName, phoneNumber, notifications, email, parentCatetgory) {
+    updateDB();
 }
 
-function insertUserInfo(firstName, middleName, lastName, phoneNumber, notifications) {
-
+function insertUserInfo(firstName, middleName, lastName, phoneNumber, notifications, email, parentCatetgory) {
+    insertDB();
 }
 
-function saveCategory(name) {
+function saveCategory(name, email, parentCatetgory) {
     //Update
-    if (categoryExists(name)) {
-        updateCategory(name);
+    if (categoryExists(name, email, parentCatetgory)) {
+        updateCategory(name, email, parentCatetgory);
     }else{
-        insertCategory(name);
-    }
-}
-function categoryExists(name) {
-    return true;
-}
-
-function updateCategory(name) {
-    return;
-}
-
-function insertCategory(name) {
-    return;
-}
-
-function saveItem(name, price, qty, status, supplier) {
-    if (itemExists(name, price, qty, status, supplier)) {
-        updateItem(name, price, qty, status, supplier);
-    }else{
-        insertItem(name, price, qty, status, supplier);
+        insertCategory(name, email, parentCatetgory);
     }
     window.open('home.html', "_self");
 }
-
-function itemExists(name, price, qty, status, supplier) {
-    return true;
+function categoryExists(name, email, parentCatetgory) {
+    if(selectDB() == "") {
+        return false;
+    }else{
+        return true;
+    }
 }
 
-function updateItem(name, price, qty, status, supplier) {
-    return;
+function updateCategory(name, email, parentCatetgory) {
+    updateDB();
 }
 
-function insertItem(name, price, qty, status, supplier) {
-    return;
+function insertCategory(name, email, parentCatetgory) {
+    insertDB();
 }
 
-function addQty(item) {
-    //update quantity q
+function saveItem(name, price, qty, status, supplier, email, parentCatetgory) {
+    if (itemExists(name, price, qty, status, supplier, email, parentCatetgory)) {
+        updateItem(name, price, qty, status, supplier, email, parentCatetgory);
+    }else{
+        insertItem(name, price, qty, status, supplier, email, parentCatetgory);
+    }
     window.open('home.html', "_self");
 }
-function subdQty(item) {
-    //update quantity q
-    oldQty = getQty(name, price, status, supplier)
-    window.open('home.html', "_self");
+
+function itemExists(name, price, qty, status, supplier, email, parentCatetgory) {
+    if(selectDB() == "") {
+        return false;
+    }else{
+        return true;
+    };
 }
 
+function updateItem(name, price, qty, status, supplier, email, parentCatetgory) {
+    updateDB();
+}
+
+function insertItem(name, price, qty, status, supplier, email, parentCatetgory) {
+    insertDB('insert into Item (itemName, qty, price, itemStatus, supplier, categoryId) values (\''+name+'\','+price+','+qty+',\''+status+'\',\''+supplier+'\', (select categoryId from Category where categoryName = \''+parentCatetgory+'\' AND inventoryId = 1));');
+}
