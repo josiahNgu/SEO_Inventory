@@ -119,11 +119,11 @@ function signup(email, password1, password2) {
 
 function createUser(email, password) {
     //mysql insert
-    insertDB('insert into User (email,passwd) values ('+email+','+password+');');
+    insertDB('insert into User (email,passwd) values (\''+email+'\',\''+password+'\');');
 }
 
 function isUser(email, password) {
-    realPassword = selectDB('select passwd from User where email = '+email+';');
+    realPassword = selectDB('select passwd from User where email = \''+email+'\';');
     if(realPassword == '') {
         return false;
     }
@@ -165,7 +165,7 @@ function insertAddress(street, city, state, zip, country, email, parentCatetgory
 }
 
 function userInfoExists(firstName, middleName, lastName, phoneNumber, notifications, email, parentCatetgory) {
-    if( selectDB('select * from UserInfo where email = '+email+';)') == "") {
+    if( selectDB('select * from UserInfo where email = \''+email+'\';)') == "") {
         return false;
     }else{
         return true;

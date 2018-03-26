@@ -16,14 +16,14 @@
             <input type="text" placeholder="email" id='email'/>
             <input type="password" placeholder="password" id='pw1'/>
             <input type="password" placeholder="password again" id='pw2'/>
-            <input type="submit" onclick="signup(document.getElementById('email').value,document.getElementById('pw1').value,document.getElementById('pw2').value);">Sign up</button>
+            <input type="submit" onclick="window.open('home.html', '_self');signup(document.getElementById('email').value,document.getElementById('pw1').value,document.getElementById('pw2').value);">Sign up</button>
             <p class="message">Have an account? <a href="#">Log In</a></p>
         </form>
         <!--login form-->
         <form class="login-form">
             <input type="text" placeholder="email" id='email'/>
             <input type="password" placeholder="password" id='pw'/>
-            <button type="button" onclick="login(document.getElementById('email').value,document.getElementById('pw').value);">Login</a></button>
+            <button type="button" onclick="window.open('home.html', '_self');login(document.getElementById('email').value,document.getElementById('pw').value);">Login</a></button>
             <p class="message">Not Registered? <a href="#"/>Sign up</p>
         </form>
         </div>
