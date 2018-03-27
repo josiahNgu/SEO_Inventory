@@ -1,4 +1,6 @@
 use jyang;
+
+#---------------------Database table-----------------------
 DROP TABLE IF EXISTS Item;
 DROP TABLE IF EXISTS Category;
 DROP TABLE IF EXISTS Inventory;
@@ -73,6 +75,7 @@ CREATE TABLE Item (
     CONSTRAINT FK_Category FOREIGN KEY (categoryId) REFERENCES Category(categoryId)
 ) Engine=InnoDB,COLLATE=latin1_general_cs;
 
+#------------------Quaries----------------------------------------------
 #insert user credential when first register
 insert into User (email,passwd) values ('seo@gmail.com','abc123');
 insert into User (email,passwd) values ('clark2018@gmail.com','wnm23');
@@ -89,8 +92,6 @@ insert into Inventory (inventoryName, email) values ('Inventory1', 'seo@gmail.co
 #insert info into Category
 insert into Category (categoryName,inventoryId,parentCategory) values ('Furnitures',2,1);
 insert into Category (categoryName,inventoryId,parentCategory) values ('Electronics',3,1);
-insert into Category (categoryName,inventoryId,parentCategory) values ('Food',4,1);
-insert into Category (categoryName,inventoryId,parentCategory) values (NULL,1,NULL);
 #insert info into Item
 insert into Item (categoryId,itemName,qty,price,itemStatus,supplier,category) values ('1','sofa','5','299','1','ComfyHome','Furnitures');
 insert into Item (categoryId,itemName,qty,price,itemStatus,supplier,category) values ('2','smartphone',7,'899','1','Sony','Electronics');
@@ -136,4 +137,5 @@ select * from Category where categoryId = (select categoryId from Inventory wher
 #get Item of a user given a categoryName
 select * from Item where CategoryId = (select categoryId from Category where categoryName = 'Furnitures');
 select * from Item where CategoryId = (select categoryId from Category where categoryName = 'Electronics');
-#get Item of a user given an email
+#get all the categories using parent category and email
+select * from Category where parentCategory = 1;
