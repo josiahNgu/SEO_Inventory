@@ -4,7 +4,16 @@
   "description": "walwkjfa",
   "main": "seo.js",
   "dependencies": {
-    "ejs": "^2.5.7"
+    "client-sessions": "^0.8.0",
+    "ejs": "^2.5.7",
+    "express": "^4.16.3",
+    "express-validator": "^5.0.3",
+    "mysql": "^2.15.0",
+    "req": "^0.1.4",
+    "require": "^2.4.20",
+    "server": "^1.0.18",
+    "session": "^0.1.0",
+    "start": "login.html"
   },
   "devDependencies": {},
   "scripts": {
