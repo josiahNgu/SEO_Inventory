@@ -1,0 +1,336 @@
+html, body{
+background-color: rgba(245, 245, 245, 0.603);
+min-width: 69.09091em !important;
+padding: 0 1.09091em;
+height: 100%;
+background-size: cover;
+-webkit-font-smoothing: antialiased;   
+font-family:'Courier New', Courier, monospace;
+font-size: 0.1nm;
+line-height: 1.6;
+}
+
+
+
+ /* add Item button*/
+#addItem  {
+    font-family: "Roboto", 'Courier New', Courier, monospace;
+    text-transform: uppercase;
+    outline: 0;
+    background:white;
+    border: 2px solid goldenrod;
+    padding: 15px;
+    color: goldenrod;
+    font-size: 14px;
+    cursor: pointer;
+ position: absolute;
+ top: 15%;
+ left: 20%;
+
+}
+#editItem  {
+  font-family: "Roboto", 'Courier New', Courier, monospace;
+  text-transform: uppercase;
+  outline: 0;
+  background:white;
+  border: 2px solid goldenrod;
+  padding: 15px;
+  color: goldenrod;
+  font-size: 14px;
+  cursor: pointer;
+position: absolute;
+top: 15%;
+left: 30%;
+
+}
+
+#catgyBtn {
+  font-family: "Roboto", 'Courier New', Courier, monospace;
+  text-transform: uppercase;
+  outline: 0;
+  background:white;
+  border: 2px solid goldenrod;
+  padding: 15px;
+  color: goldenrod;
+  font-size: 14px;
+  cursor: pointer;
+position: absolute;
+  top: 15%;
+  left:40%;
+
+}
+#editCategoryN {
+  font-family: "Roboto", 'Courier New', Courier, monospace;
+  text-transform: uppercase;
+  outline: 0;
+  background:white;
+  border: 2px solid goldenrod;
+  padding: 15px;
+  color: goldenrod;
+  font-size: 14px;
+  cursor: pointer;
+position: absolute;
+top: 15%;
+left:50%;
+
+}
+.table{
+  position: absolute  ;
+  top:20%;
+  left: 20%;
+}
+#addItem:hover,#catgyBtn:hover, #editCategoryN:hover , #editItem:hover{
+  background:black;
+  color: white;
+}
+
+/*add item button inside the pop up form of add item*/
+#add, #addCatgy ,#updateCatgyN , #updateItem {
+  font-family: "Roboto", 'Courier New', Courier, monospace;
+  text-transform: uppercase;
+  color: goldenrod; 
+  background: white; 
+  border: 2px solid goldenrod;
+  padding: 1px;
+  color: goldenrod;
+  font-size: 14px;
+  cursor: pointer;
+}
+#add:hover , #addCatgy:hover ,#updateCatgyN:hover ,#updateItem:hover {
+  background:black;
+  color: white;
+  border: white;
+}
+/*font inside the text box*/
+input[type = text], input[type = number] {
+  width: 50%;
+    padding: 3 px;
+    box-sizing: content-box;
+    font-family: 'Courier New', Courier, monospace;
+  }
+/* the pop up style for adding item*/
+.modal{
+    display:none;
+    position:fixed;
+    z-index: 1;
+    left: 0; 
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4)
+}
+.modal-content{
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    width: 30%;
+    box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
+    animation-name:modalOpen;
+    animation-duration: 1.9s;
+}
+  .closeBtn , .catClose , .EcatClose , .editItemClose{
+      color: black;
+      float:right;
+      right: 16px;
+      font-size: 18px;
+      font-size: 50px;
+  }
+  .closeBtn:hover,.closeBtn:focus{
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+  }
+@keyframes modalOpen{
+    from{opacity: 0}
+    to{opacity: 1}
+}
+/*end of pop up form style*/
+.home-page{
+  width: 1000px;
+  padding: 0 0 0;
+  margin-top: 10px; 
+}
+
+.settings-page{
+  width: 1000px;
+  padding: 10% 0 0;
+  margin: auto; 
+}
+
+.settings-form{
+  position:relative;
+  background: transparent;
+  max-width: 360px;
+  margin: 0 auto 50px;
+  padding:20px;
+  text-align: center;
+  margin-top: 0px;
+  padding:10px;
+  font-size: 8pt;
+  margin-top: 1px;
+  margin-right: 5px;
+  position:absolute;
+  top:10%;
+  right:40%;
+}
+
+.settings-form input{
+  font-family: "Roboto", 'Courier New', Courier, monospace;
+  outline: 1;
+  background: whitesmoke;
+  width: 100%;
+  border: 2px solid goldenrod;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing:border-box;
+  font-size: 14px;
+}
+
+.settings-form button{
+  font-family: "Roboto", 'Courier New', Courier, monospace;
+  text-transform: uppercase;
+  outline: 0;
+  background:white;
+  width: 100%;
+  border: 2px solid goldenrod;
+  padding: 15px;
+  color: goldenrod;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.settings-form button:hover,.form button:active{
+  background: black;
+  color: white;
+}
+
+/*location of the form*/
+.form{
+  position:relative;
+  z-index: 1;
+  background: transparent;
+  max-width: 360px;
+  margin: 0 auto 50px;
+  padding:20px;
+  text-align: center;
+}
+/*style for the form input*/
+.form input{
+  font-family: "Roboto", 'Courier New', Courier, monospace;
+  outline: 1;
+  background: whitesmoke;
+  width: 100%;
+  border: 2px solid goldenrod;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing:border-box;
+  font-size: 14px;
+}
+/*style for the button*/
+.form button{
+  font-family: "Roboto", 'Courier New', Courier, monospace;
+  text-transform: uppercase;
+  outline: 0;
+  background:white;
+  width: 100%;
+  border: 2px solid goldenrod;
+  padding: 15px;
+  color: goldenrod;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.form button:hover,.form button:active{
+  background: black;
+  color: white;
+}
+
+.form .message a {
+  color:black;
+  text-decoration: underline;
+}
+.form .register-form{
+  display: none;
+}
+
+.corner{
+  /* position: relative;
+  z-index: 1; */
+  background: transparent;
+  max-width: 360px;
+  margin-top: 0px;
+  padding:10px;
+  text-align: right;
+  width: 100px;
+  font-size: 8pt;
+  margin-top: 1px;
+  margin-right: 5px;
+  position:absolute;
+  top:0;
+  right:0;
+
+}
+
+.corner divider{
+  width:2px;
+  height:auto;
+  display:inline-block;
+}
+
+.corner button{
+  font-family: "Roboto", 'Courier New', Courier, monospace;
+  text-transform: uppercase;
+  outline: 0;
+  background:white;
+  width: 100%;
+  border: 2px solid goldenrod;
+  padding: 15px;
+  color: goldenrod;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.corner button:hover,.form button:active{
+  background: black;
+  color: white;
+}
+
+.inventory {
+  position:absolute;
+  z-index: 1;
+  border: 2px solid goldenrod;       
+  background: transparent;
+  width: 80%px;
+  margin: 0 auto 50px;
+  padding:20px;
+  text-align: center;
+}
+
+#nameCorner{
+  background: transparent;
+  text-align: left;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  font-size: 30px;
+} 
+
+/*login-page class size and position*/
+.login-page{
+  width: 400px;
+  padding: 10% 0 0;
+  margin: auto; 
+}
+table, td, th {    
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 15px;
+}
