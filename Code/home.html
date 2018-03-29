@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+ 
+ 
+   <head>
+      <meta charset="utf-8"/>
+      <title>SEOinventory</title>
+      <link rel="stylesheet" type="text/css" href="/css/homepageStyle.css">
+      <link rel="script"  href="/home.js">
+   </head>
+   <body>
+      <p id="nameCorner">SEOinventory</p>
+      <p id="currentDirectory" />
+      <div class="home-page">
+         <!--register an account form-->
+         <div class="corner">
+            <button type="button" action= "/" style="padding:4px;width:100%">LogOut</button>
+            <divider></divider>
+            <button type="button" onclick="location.href='userSettings.html';" style="padding:4px;width:100%">Settings</button>
+            <divider></divider>
+            <button type="button" onclick="funky();">Try it out!</button>
+         </div>
+         <div class="inventory"></div>
+      </div>
+         
+      </script>
+      </div>
+      <!--add Item button -->
+      <button id="addItem" class="button">Add Item</button>
+      <div id="simpleModal" class="modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <span class="closeBtn">&times;</span>
+               <h2>Add Item</h2>
+            </div>
+            <form class="Item" action="/addItem" method="post">
+               Item Name <br>
+               <input type="text" name="itemName" /> <br>
+               price<br>
+               <input type="text" name="itemStatus" /><br>
+               Quantity <br>
+               <input type="number" min="0" name="price" /><br>
+               Item Status<br>
+               <input type="number" min="0" name="quantity" /><br>
+               supplier<br>
+               <input type="text" name="supplier" /><br>
+               category<br>
+               <input type="text" name="category" /><br>
+               <button id="add" type ="submit">Add</a></button>
+            </form>
+            <script src="home.js"></script>
+         </div>
+      </div>
+      <!-- add category button -->
+      <button id="addCategory" class="button">Add Category</button>
+      <div id="categoryModal" class="modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <span class="closeBtn">&times;</span>
+               <h2>Add Category</h2>
+            </div>
+            <form class="Category" action="/addCategory" method="post">
+                Category Name <br>
+                <input type="text" name="categoryName" /> <br>
+            </form>
+            <script src="home.js"></script>
+         </div>
+      </div>
+      <!-- <button id ="catgyBtn" class="button" > Add category</button>    
+      <div id="categoryModal" class="modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h2>Add Category</h2>
+               <span class="catClose">&times;</span>
+            </div>
+            <form class="addCategory" action="/addCategory" method="post">
+               Category Name <br>
+               <input type="text" id="catgyName"/> <br>
+               <button id="addCatgy" type ="submit">Add</a></button>
+            </form>
+            <script src ="home.js"></script>
+         </div>
+      </div> -->
+      <!-- edit category Name button-->
+      <button id ="editCategoryN" class="button" > Edit Category</button>    
+      <div id="editCategoryMdl" class="modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h2>Edit Category name</h2>
+               <span class="EcatClose">&times;</span>
+            </div>
+            <form class="editCatgyName" action="/editCategory" method="post">
+               Category Name <br>
+               <input type="text" id="newCatgyN"/> <br>
+               <button id="updateCatgyN" type ="submit">Update</a></button>
+            </form>
+            <script src ="home.js"></script>
+         </div>
+      </div>
+      <!-- edit current Item button-->
+      <button id = "editItem" class="button" >edit Item</button>
+      <div id="editItemModal" class="modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <span class="editItemClose">&times;</span>
+               <h2>Edit Item</h2>
+            </div>
+            <form class="EItem" action="/editItem" method="post">
+               Item Name <br>
+               <input type="text" name="itemName" /> <br>
+               price<br>
+               <input type="number" min="0" name="price" /><br>
+               Quantity <br>
+               <input type="number" min="0" name="quantity" /><br>
+               Item Status<br>
+               <input type="text" name="itemStatus" /><br>
+               supplier<br>
+               <input type="text" name="supplier" /><br>
+               category<br>
+               <input type="text" name="category" /><br>
+               <button id="updateItem" type ="submit">
+               Update</a></button>
+            </form>
+            <script src="home.js"></script>
+         </div>
+      </div>
+      <!--<div class="table">-->
+      <!-- <div id ='table'>  
+            <script type="text/javascript">
+                var opts = {
+                    url: 'http://localhost:3000/rows/'
+                };
+   
+                fetch(opts)
+                    .then((res) => {
+                        if (res.ok) {
+                            return res.json();
+                        }
+                     })
+                     .then((rows) => {
+                         for (let Item of rows) {
+                             // row will be a mysql row -- you can loop over these and do what you want with them
+                         }
+                      })
+                      .catch(console.log);
+           </script> -->
+            <!-- <h1>Database</h1>
+            <table class="data-table">
+                <caption class="title">Category</caption>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Item status</th>
+                    </tr>  
+                </thead>
+                <tbody> -->
+
+    </div>
+   </body>
+</html>
