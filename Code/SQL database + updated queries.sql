@@ -77,31 +77,35 @@ CREATE TABLE Item (
 
 #------------------Quaries----------------------------------------------
 #insert user credential when first register
-insert into User (email,passwd) values ('seo@gmail.com','abc123');
-insert into User (email,passwd) values ('clark2018@gmail.com','wnm23');
-insert into User (email,passwd) values ('Roland2107@gmail.com','R0596');
+insert into jyang.User (email,passwd) values ('seo@gmail.com','abc123');
+insert into jyang.User (email,passwd) values ('clark2018@gmail.com','wnm23');
+insert into jyang.User (email,passwd) values ('Roland2107@gmail.com','R0596');
 #insert user info (address)
-insert into Address (street,city,zipcode,country) values ('123 St','Lincoln','68508','USA');
-insert into Address (street,city,zipcode,country) values ('19 Bowman St','Melbourne','32904','USA');
-insert into Address (street,city,zipcode,country) values ('18th St','Lincoln','68508','USA');
+insert into jyang.Address (street,city,zipcode,country) values ('123 St','Lincoln','68508','USA');
+insert into jyang.Address (street,city,zipcode,country) values ('19 Bowman St','Melbourne','32904','USA');
+insert into jyang.Address (street,city,zipcode,country) values ('18th St','Lincoln','68508','USA');
 #insert info into Inventory
-insert into Inventory (inventoryName, email) values ('firstInventory','clark2018@gmail.com');
-insert into Inventory (inventoryName, email) values ('MyInventory','Roland2107@gmail.com');
-insert into Inventory (inventoryName, email) values ('Inventory1', 'seo@gmail.com');
+insert into jyang.Inventory (inventoryName, email) values ('firstInventory','clark2018@gmail.com');
+insert into jyang.Inventory (inventoryName, email) values ('MyInventory','Roland2107@gmail.com');
+insert into jyang.Inventory (inventoryName, email) values ('Inventory1', 'seo@gmail.com');
 
 #insert info into Category
-insert into Category (categoryName,inventoryId,parentCategory) values ('Furnitures',2,1);
-insert into Category (categoryName,inventoryId,parentCategory) values ('Electronics',3,1);
+insert into jyang.Category (categoryName,inventoryId,parentCategory) values ('Furnitures',2,1);
+insert into jyang.Category (categoryName,inventoryId,parentCategory) values ('Electronics',3,1);
 #insert info into Item
-insert into Item (categoryId,itemName,qty,price,itemStatus,supplier,category) values ('1','sofa','5','299','1','ComfyHome','Furnitures');
-insert into Item (categoryId,itemName,qty,price,itemStatus,supplier,category) values ('2','smartphone',7,'899','1','Sony','Electronics');
+insert into jyang.Item (categoryId,itemName,qty,price,itemStatus,supplier,category) values ('1','sofa','5','299','1','ComfyHome','Furnitures');
+insert into jyang.Item (categoryId,itemName,qty,price,itemStatus,supplier,category) values ('2','smartphone',7,'899','1','Sony','Electronics');
 #insert user info (Note: information in address has to be repeated to get the correct addressId)
-insert into UserInfo (email,firstName,lastName,creationTime,addressId) 
+insert into jyang.UserInfo (email,firstName,lastName,creationTime,addressId) 
 values ('seo@gmail.com','Bill','Gates',CURRENT_TIMESTAMP,(select addressId from Address where street = '123 St' AND city = 'Lincoln' AND zipcode = '68508' AND country = 'USA'));
-insert into UserInfo (email,firstName,lastName,creationTime,addressId) 
+insert into jyang.UserInfo (email,firstName,lastName,creationTime,addressId) 
 values ('clark2018@gmail.com','Jason','Clark',CURRENT_TIMESTAMP,(select addressId from Address where street = '19 Bowman St' AND city = 'Melbourne' AND zipcode = '32904' AND country = 'USA'));
-insert into UserInfo (email,firstName,lastName,creationTime,addressId) 
+insert into jyang.UserInfo (email,firstName,lastName,creationTime,addressId) 
 values ('Roland2107@gmail.com','Roland','Kim',CURRENT_TIMESTAMP,(select addressId from Address where street = '18th St' AND city = 'Lincoln' AND zipcode = '68508' AND country = 'USA'));
+
+#disable safe mode for update
+SET SQL_SAFE_UPDATES = 0;
+
 #update user info (Note: email can't be updated, as it's foreign key for UserInfo table)
 UPDATE UserInfo SET lastName = 'Clington' where email = 'seo@gmail.com';
 UPDATE UserInfo SET lastName = 'Brown' where email = 'clark2018@gmail.com';
@@ -112,8 +116,9 @@ UPDATE Address SET street = '321 St' where addressId = (select addressId from Us
 UPDATE Address SET street = '15 Bowman St' where addressId = (select addressId from UserInfo where email = 'clark2018@gmail.com');
 UPDATE Address SET street = 'Blue St' where addressId = (select addressId from UserInfo where email = 'Roland2107@gmail.com');
 
-
-
+#update item info
+UPDATE Item SET qty = '19', price = '499', itemName = 'Dining Table' where Itemname = 'sofa';
+UPDATE Item SET qty = '9',category = 'Phones' where Itemname = 'smartphone';
 ##GET USER INFO
 #get user password given an email
 select passwd from User where email = 'seo@gmail.com';
@@ -137,5 +142,5 @@ select * from Category where categoryId = (select categoryId from Inventory wher
 #get Item of a user given a categoryName
 select * from Item where CategoryId = (select categoryId from Category where categoryName = 'Furnitures');
 select * from Item where CategoryId = (select categoryId from Category where categoryName = 'Electronics');
-#get all the categories using parent category and email
+#get all the categories using parent category
 select * from Category where parentCategory = 1;
