@@ -4,8 +4,8 @@ var mysql = require('mysql');
 
 var con = mysql.createConnection({
   host: "cse.unl.edu",
-  user: "jngu",
-  password: "bZ4:9y",
+  user: "tsim",
+  password: "60619312",
 });
 
 /* GET home page. */
@@ -21,12 +21,30 @@ router.post('/login', function(req, res, next) {
 var email = req.body.email;
 var pw = req.body.pw;
 console.log("post received: %s %s", email, pw);
+var sql1 = "select * from tsim.User where email = ?";
+con.query(sql1, [email], function(err,result) {
+    var realpw = result[0].passwd
+	console.log(email);
+	console.log(realpw);
+	if (pw == realpw){
+		res.render('home.html', function(err, home) {
+		res.send(home);
+		});
+	}else{
+		res.render('login.html', function(err, login) {
+		res.send(login);
+		});
+	}
+	if (err) throw err;
+    con.end();
+	});
+
+
+
 
 //,,add code
 
-res.render('home.html', function(err, home) {
-	res.send(home);
-});
+
 });
 
 /* process registration form  */
@@ -37,12 +55,27 @@ var email1 = req.body.email1;
 var pw1 = req.body.pw1;
 var pw2 = req.body.pw2;
 console.log("post received: %s %s %s", email1, pw1, pw2); 
+ if ( (pw1 == pw2) && (pw1 != '') && (pw2 != '') && email1.includes('@')) {
+    var sql = "insert into tsim.User (email,passwd) values (?,?)";
+	con.query(sql, [email1,pw1], function(err) {
+    if (err) throw err;
+    con.end();
+	});
+	res.render('login.html', function(err, login) {
+	res.send(login)	;
+	});
+    }
+else{//invalid password or email, should send to signup page
+	res.render('login.html', function(err, login) {
+	res.send(login);
+	});
+}
+	
+
 // debug. remove please
 // use simiar logic as /login above to check the input
 // if successful, go back to login page. else throw error message and then go back to login page
-res.render('login.html', function(err, login) {
-	res.send(login)	;
-});
+
 
 });
 
@@ -54,7 +87,7 @@ router.post('/addItem',function(req,res,next){
   var quantity = req.body.quantity;
   var supplier = req.body.supplier;
   var category = req.body.category;
-  var sql = "insert into jngu.Item (categoryId,itemName,qty,price,itemStatus,supplier,category) values ('2','smartphone',7,'899','1','Sony','Electronics')";
+  var sql = "insert into tsim.Item (categoryId,itemName,qty,price,itemStatus,supplier,category) values ('2','smartphone',7,'899','1','Sony','Electronics')";
     // var sql = "INSERT INTO jngu.Item (itemName,qty,price,itemStatus,supplier,category) values('" +
   //  itemName + "','" + quantity + "','"  + price + "','"  + itemStatus + "','" +supplier+ "','" + category+"')";
   console.log("test:" + itemName);
