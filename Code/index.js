@@ -17,34 +17,26 @@ res.render('login.html', function(err, login) {
 
 /* process login form */
 router.post('/login', function(req, res, next) {
-
 var email = req.body.email;
 var pw = req.body.pw;
 console.log("post received: %s %s", email, pw);
-var sql1 = "select * from tsim.User where email = ?";
-con.query(sql1, [email], function(err,result) {
-    var realpw = result[0].passwd
-	console.log(email);
-	console.log(realpw);
-	if (pw == realpw){
-		res.render('home.html', function(err, home) {
-		res.send(home);
-		});
-	}else{
-		res.render('login.html', function(err, login) {
-		res.send(login);
-		});
-	}
-	if (err) throw err;
-    con.end();
-	});
-
-
-
-
-//,,add code
-
-
+var realPassword ;
+var sql = "select passwd from  sim.User where email = '"+ email +"'";
+con.query(sql,function(err,result){
+if(result.length>0){
+realPassword = result[0].passwd;
+}
+console.log(realPassword);
+if(realPassword==pw){
+  console.log("realP = pw ");
+  res.render('home.html', function(err, home) {
+  res.send(home);
+  });
+}
+else{
+  res.redirect(req.get('referer'));
+}
+});
 });
 
 /* process registration form  */
