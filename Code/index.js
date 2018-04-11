@@ -39,6 +39,21 @@ else{
 });
 });
 
+
+function userExist(email){
+  sql = "select email from jngu.User where email ='" + email + "'";
+    con.query(sql,function(err,result){
+      console.log(result.length);
+    if(result.length>0){
+      console.log(result);
+      return true;
+    }
+    else{
+      return false;
+    }
+  });
+  }
+  
 /* process registration form  */
 router.post('/signup', function(req, res, next) {
 
@@ -47,29 +62,22 @@ var email1 = req.body.email1;
 var pw1 = req.body.pw1;
 var pw2 = req.body.pw2;
 console.log("post received: %s %s %s", email1, pw1, pw2); 
- if ( (pw1 == pw2) && (pw1 != '') && (pw2 != '') && email1.includes('@')) {
-    var sql = "insert into tsim.User (email,passwd) values (?,?)";
-	con.query(sql, [email1,pw1], function(err) {
-    if (err) throw err;
-    con.end();
-	});
-	res.render('login.html', function(err, login) {
-	res.send(login)	;
-	});
-    }
-else{//invalid password or email, should send to signup page
-	res.render('login.html', function(err, login) {
-	res.send(login);
-	});
+if(userExist(email1) == false){
+  console.log("inside");
+  var sql = " insert into jngu.User (email,passwd) values ('" +email1 + "','" + pw1 + "')";
+  con.query(sql);
+  res.render('login.html', function(err, login) {
+    res.send(login);
+    });
 }
-	
-
-// debug. remove please
-// use simiar logic as /login above to check the input
-// if successful, go back to login page. else throw error message and then go back to login page
-
+else{
+  res.render('login.html', function(err, login) {
+    res.send(login);
+    });
+}
 
 });
+
 
 router.post('/addItem',function(req,res,next){
   console.log("function called");
