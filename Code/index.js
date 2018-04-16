@@ -4,9 +4,13 @@ var mysql = require('mysql');
 
 var con = mysql.createConnection({
   host: "cse.unl.edu",
-  user: "tsim",
-  password: "60619312",
+  user: "jngu",
+  password: "bZ4:9y",
 });
+
+
+
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -21,7 +25,8 @@ var email = req.body.email;
 var pw = req.body.pw;
 console.log("post received: %s %s", email, pw);
 var realPassword ;
-var sql = "select passwd from  sim.User where email = '"+ email +"'";
+var sql = "select passwd from  jngu.User where email = '"+ email +"'";
+
 con.query(sql,function(err,result){
 if(result.length>0){
 realPassword = result[0].passwd;
@@ -40,45 +45,27 @@ else{
 });
 
 
-function userExist(email){
-  sql = "select email from jngu.User where email ='" + email + "'";
-    con.query(sql,function(err,result){
-      console.log(result.length);
-    if(result.length>0){
-      console.log(result);
-      return true;
-    }
-    else{
-      return false;
-    }
-  });
-  }
   
 /* process registration form  */
 router.post('/signup', function(req, res, next) {
-
-// extract the parameters (mail and pw) obtained from login form
-var email1 = req.body.email1;
-var pw1 = req.body.pw1;
-var pw2 = req.body.pw2;
-console.log("post received: %s %s %s", email1, pw1, pw2); 
-if(userExist(email1) == false){
-  console.log("inside");
-  var sql = " insert into jngu.User (email,passwd) values ('" +email1 + "','" + pw1 + "')";
-  con.query(sql);
-  res.render('login.html', function(err, login) {
-    res.send(login);
+  var email1 = req.body.email1;
+  var pw1 = req.body.pw1;
+  var pw2 = req.body.pw2;
+  console.log("post received: %s %s %s", email1, pw1, pw2); 
+  if(pw1 == pw2){
+    console.log("inside");
+    if(userExist==false){
+    var sql = "insert into jngu.User (email,passwd) values ('" +email1 + "','" + pw1 + "')";
+    con.query(sql,function(err,result){
+      if(err) throw err;
     });
-}
-else{
-  res.render('login.html', function(err, login) {
-    res.send(login);
-    });
-}
-
-});
-
-
+    res.render('login.html', function(err, login) {
+      res.send(login);
+      });
+    }
+  }
+    console.log("user exists");
+  });
 router.post('/addItem',function(req,res,next){
   console.log("function called");
   var itemName = req.body.itemName;
@@ -87,21 +74,12 @@ router.post('/addItem',function(req,res,next){
   var quantity = req.body.quantity;
   var supplier = req.body.supplier;
   var category = req.body.category;
-  var sql = "insert into tsim.Item (categoryId,itemName,qty,price,itemStatus,supplier,category) values ('2','smartphone',7,'899','1','Sony','Electronics')";
-    // var sql = "INSERT INTO jngu.Item (itemName,qty,price,itemStatus,supplier,category) values('" +
-  //  itemName + "','" + quantity + "','"  + price + "','"  + itemStatus + "','" +supplier+ "','" + category+"')";
-  console.log("test:" + itemName);
+  var sql = "INSERT INTO jngu.Item (itemName,qty,price,itemStatus,supplier,category, inventory) values('" +
+  itemName + "','" + quantity + "','"  + price + "','"  + itemStatus + "','" +supplier+ "','" + category+"','1')";
   con.query(sql, function (err, result) {
-    // res.json(rows);
     if(err) throw err;
-    con.on('error', function(err) {
-      console.log("[mysql error]",err);
+    res.redirect('#');
     });
-    });
-res.render('home.html', function(err, home) {
-  console.log('return to home page');
-	res.send(home);
-});
 });
 
 router.post('/addCategory',function(req,res,next){
@@ -138,7 +116,12 @@ router.post('/editCategory',function(req,res,next){
   });
 });
 
-
+router.post('/logout',function(req,res,next){
+  console.log("logout");
+res.render('login.html',function(err,login){
+res.send(login);
+});
+});
 
 module.exports = router;
 
