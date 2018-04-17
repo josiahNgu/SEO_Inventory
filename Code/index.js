@@ -51,17 +51,28 @@ router.post('/signup', function(req, res, next) {
   console.log("post received: %s %s %s", email1, pw1, pw2); 
   if(pw1 == pw2){
     console.log("inside");
-    if(userExist==false){
-    var sql = "insert into jngu.User (email,passwd) values ('" +email1 + "','" + pw1 + "')";
-    con.query(sql,function(err,result){
-      if(err) throw err;
-    });
-    res.render('login.html', function(err, login) {
+	var userExist = false;
+	var sql1 = "select * from jngu.User where email = '"+email1+"'";
+	con.query(sql1,function(err,result){
+		if(err) throw err;
+		if (result.length > 0){
+			console.log("user exists");
+			userExist = true;
+		}
+		if(!userExist){
+			var sql = "insert into jngu.User (email,passwd) values ('" +email1 + "','" + pw1 + "')";
+			con.query(sql,function(err,result){
+			if(err) throw err;
+			});
+		}
+	});
+    
+      res.render('login.html', function(err, login) {
       res.send(login);
       });
-    }
+    
   }
-    console.log("user exists");
+    
   });
  
 //Note: category have to be created before adding item 
