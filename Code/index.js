@@ -9,10 +9,6 @@ var con = mysql.createConnection({
   password: "bZ4:9y",
 });
 
-
-
-
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
 res.render('login.html', function(err, login) {
