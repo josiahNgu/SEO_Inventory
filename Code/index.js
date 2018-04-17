@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
+var email;
 
 var con = mysql.createConnection({
   host: "cse.unl.edu",
@@ -21,7 +22,7 @@ res.render('login.html', function(err, login) {
 
 /* process login form */
 router.post('/login', function(req, res, next) {
-var email = req.body.email;
+email = req.body.email;
 var pw = req.body.pw;
 console.log("post received: %s %s", email, pw);
 var realPassword ;
@@ -66,6 +67,8 @@ router.post('/signup', function(req, res, next) {
   }
     console.log("user exists");
   });
+ 
+//Note: category have to be created before adding item 
 router.post('/addItem',function(req,res,next){
   console.log("function called");
   var itemName = req.body.itemName;
@@ -74,18 +77,39 @@ router.post('/addItem',function(req,res,next){
   var quantity = req.body.quantity;
   var supplier = req.body.supplier;
   var category = req.body.category;
-  var sql = "INSERT INTO jngu.Item (itemName,qty,price,itemStatus,supplier,category, inventory) values('" +
-  itemName + "','" + quantity + "','"  + price + "','"  + itemStatus + "','" +supplier+ "','" + category+"','1')";
-  con.query(sql, function (err, result) {
-    if(err) throw err;
-    res.redirect('#');
-    });
+  
+  var sql = "select categoryId from jngu.Category where categoryName = '"+ category +"'";
+  con.query(sql,function(err,result){
+	 if(err) throw err;
+	 var id = result[0].categoryId;
+	 var sql1 = "INSERT INTO jngu.Item (categoryId,itemName,qty,price,itemStatus,supplier,category) values('" + id + "','" +
+  itemName + "','" + quantity + "','"  + price + "','"  + itemStatus + "','" +supplier+ "','" + category+"')";
+		con.query(sql1,function(err,result){
+			if(err) throw err;
+		});
+	 
+  });
+  res.render('home.html', function(err, home) {
+    console.log('return to home page');
+    res.send(home);
+  });
 });
 
 router.post('/addCategory',function(req,res,next){
   console.log("add catgy");
-  var CategoryName = req.body.catgyName;
+  var CategoryName = req.body.categoryName;
   console.log(CategoryName);
+  //hardcode inventory name into 'Inventory'
+  var sql = "insert into jngu.Inventory (inventoryName,email) values ('Inventory', '" + email + "')";
+  con.query(sql,function(err,result){
+      if(err) throw err;
+	  var id = result.insertId;
+	  var sql1 = "insert into jngu.Category (categoryName,inventoryId) values ('" + CategoryName + "','" + id + "')";
+	  con.query(sql1,function(err,result){
+		  if(err) throw err;
+	  });
+	  
+    });
   res.render('home.html', function(err, home) {
     console.log('return to home page');
     res.send(home);
@@ -124,6 +148,5 @@ res.send(login);
 });
 
 module.exports = router;
-
 
 
