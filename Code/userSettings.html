@@ -3,8 +3,9 @@
 <head>
     <meta charset="utf-8"/>
     <title>SEOinventory</title>
-    <link rel ="stylesheet" href ="style.css">
-    <script type="text/javascript" src="seo.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+
+      <link rel="script"  href="/home.js">
 </head>
 <body>
     <p id="nameCorner">SEOinventory</p>
@@ -13,10 +14,11 @@
         <div class="corner">
             <button type="button" onclick="location.href='login.html';" style="padding:4px;width:100%">LogOut</button>
             <divider></divider>
-            <button type="button" onclick="location.href='home.html';" style="padding:4px;width:100%">Home</button>
+            <form method="post" action="/home">
+                <button type="submit">Back</button>
+            </form>
         </div>
-        <div class ="settings-form">
-        <form class ="login-form">
+        <div class ="settings-form" method = "post" action = "/updateUser" >
             <input type="text" placeholder="first name" id="firstName">
             <input type="text" placeholder="middle name" id="middleName">
             <input type="text" placeholder="last name" id="lastName">
@@ -27,19 +29,7 @@
             <input type="text" placeholder="state" id="state">
             <input type="text" placeholder="zip" id="zip">
             <input type="text" placeholder="country" id="country">
-            <button onclick="saveUserSettings(
-                document.getElementById('firstName').value,
-                document.getElementById('middleName').value,
-                document.getElementById('lastName').value,
-                document.getElementById('phoneNumber').value,
-                document.getElementById('notifications').value,
-                document.getElementById('street').value,
-                document.getElementById('city').value,
-                document.getElementById('state').value,
-                document.getElementById('zip').value,
-                document.getElementById('country').value);">
-            Save
-            </button>
+            <button type = "submit">Save</button>
         </form>
     </div>    
       <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
