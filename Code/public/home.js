@@ -31,12 +31,12 @@ closeEdit.addEventListener('click',closeEditItem);
 
 
 //edit category modal
-var editCatgy = document.getElementById('editCategoryMdl');
-var editCatgyBtn = document.getElementById('editCategoryN');
-var closeEditCatgy = document.getElementsByClassName('EcatClose')[0];
+// var editCatgy = document.getElementById('editCategoryMdl');
+// var editCatgyBtn = document.getElementById('editCategoryN');
+// var closeEditCatgy = document.getElementsByClassName('EcatClose')[0];
 
-editCatgyBtn.addEventListener('click',openEditCatgy);
-closeEditCatgy.addEventListener('click',closeEditCatgy);
+// editCatgyBtn.addEventListener('click',openEditCatgy);
+// closeEditCatgy.addEventListener('click',closeEditCatgy);
 
 window.addEventListener('click', outsideClick);
 //fuction to  addItem modal
@@ -54,9 +54,6 @@ function outsideClick(e){
     }
     if(e.target == categoryModal){
         categoryModal.style.display = "none";
-    }
-    if(e.target == editCatgy){
-        editCatgy.style.display = 'none';
     }
     if(e.target == editItem){
         editItem.style.display ='none';
