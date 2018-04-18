@@ -148,12 +148,15 @@ router.post('/editCategory',function(req,res,next){
 });
 router.post('/userSettings',function(req,res){
   res.render('userSettings.html',function(err,userSettings){
-    res.send(userSettings);
+  	res.send(userSettings);
   });
 });
 
 router.post('/updateUser',function(req,res,next){
 console.log("update user info");
+ res.render('home.html',function(err,home){
+ 	res.send(home);
+ });
 });
 
 router.post('/home',function(req,res,next){
