@@ -146,7 +146,21 @@ router.post('/editCategory',function(req,res,next){
     res.send(home);
   });
 });
+router.post('/userSettings',function(req,res){
+  res.render('userSettings.html',function(err,userSettings){
+    res.send(userSettings);
+  });
+});
 
+router.post('/updateUser',function(req,res,next){
+console.log("update user info");
+});
+
+router.post('/home',function(req,res,next){
+  res.render('home.html',function(err,home){
+    res.send(home);
+  });
+});
 router.post('/logout',function(req,res,next){
   console.log("logout");
 res.render('login.html',function(err,login){
