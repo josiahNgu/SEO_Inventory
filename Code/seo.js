@@ -119,10 +119,11 @@ app.post('/addItem',function(req,res,next){
   itemName + "','" + quantity + "','"  + price + "','"  + itemStatus + "','" +supplier+ "','" + category+"')";
 		con.query(sql1,function(err,result){
 			if(err) throw err;
+			res.redirect('/home');
 		});
 	 
   });
-res.redirect('/home');
+
 });
 
 //add Category button
