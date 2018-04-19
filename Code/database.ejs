@@ -13,8 +13,10 @@
       <div class="home-page">
          <!--register an account form-->
          <div class="corner">
-            <button id ="logout" onclick="location.href='/login?dis=yes'" style="padding:4px;width:100%">LogOut</button>
-            <divider></divider>
+	    <form method="post" action="/logout">
+                <button type="submit">Logout</button>
+            </form>
+	    <divider></divider>
             <form method="post" action="/userSettings">
                 <button type="submit">Settings</button>
             </form>
