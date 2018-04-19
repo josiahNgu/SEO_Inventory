@@ -49,8 +49,7 @@ router.post('/signup', function(req, res, next) {
   var pw1 = req.body.pw1;
   var pw2 = req.body.pw2;
   console.log("post received: %s %s %s", email1, pw1, pw2); 
-  if(pw1 == pw2){
-    console.log("inside");
+  if(pw1 == pw2 && email1 != 0){
 	var userExist = false;
 	var sql1 = "select * from jngu.User where email = '"+email1+"'";
 	con.query(sql1,function(err,result){
@@ -132,6 +131,24 @@ router.post('/editItem',function(req,res,next){
   var supplier = req.body.supplier;
   var category = req.body.category;
   console.log(itemName);
+  if(price != 0){
+	  var sql = "update jngu.Item set price = '"+ price +"' where itemName = '"+ itemName +"'";
+	  con.query(sql,function(err,result){
+	  if(err) throw err;
+  });
+  }
+  if(quantity != 0){
+	  var sql = "update jngu.Item set qty = '"+ quantity +"'where itemName = '"+ itemName +"'";
+	  con.query(sql,function(err,result){
+	  if(err) throw err;
+  });
+  }
+  if(supplier != 0 ){
+	  var sql = "update jngu.Item set supplier = '"+ supplier +"'where itemName = '"+ itemName +"'";
+	  con.query(sql,function(err,result){
+	  if(err) throw err;
+  });
+  }
   res.render('home.html', function(err, home) {
     console.log('return to home page');
     res.send(home);
@@ -147,13 +164,33 @@ router.post('/editCategory',function(req,res,next){
   });
 });
 router.post('/userSettings',function(req,res){
+	
   res.render('userSettings.html',function(err,userSettings){
   	res.send(userSettings);
   });
 });
 
 router.post('/updateUser',function(req,res,next){
-console.log("update user info");
+	console.log("update user info");
+	var firstName = req.body.firstName;
+	var middleName = req.body.middleName;
+	var lastName = req.body.lastName;
+	var phoneNumber = req.body.phoneNumber;
+	var street = req.body.street;
+	var city = req.body.city;
+	var state = req.body.state;
+	var zipcode = req.body.zip;
+	var country = req.body.country;
+	console.log(firstName);
+	var sql = "insert into jngu.Address (street,city,state, zipcode,country) values ('" + street + "','" + city + "','" + state + "','" + zipcode + "','" + country + "')";
+	con.query(sql,function(err,result){
+		if(err) throw err;
+		var addressId = result.insertId;
+		var sql1 = "insert into jngu.UserInfo (email,firstName,middleName,lastName,creationTime,addressId) values ('" + email + "','" + firstName + "','" + middleName + "','" + lastName + "',CURRENT_TIMESTAMP,'" + addressId + "')";
+		con.query(sql1,function(err,result){
+			if(err) throw err;
+		});
+	});
  res.render('home.html',function(err,home){
  	res.send(home);
  });
