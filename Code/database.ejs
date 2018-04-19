@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+ 
+ 
+   <head>
+      <meta charset="utf-8"/>
+      <title>SEOinventory</title>
+      <link rel="stylesheet" type="text/css" href="/css/homepageStyle.css">
+      <link rel="script"  href="/home.js">
+   </head>
+   <body>
+      <p id="nameCorner">SEOinventory </p>
+      <div class="home-page">
+         <!--register an account form-->
+         <div class="corner">
+            <button id ="logout" onclick="location.href='/login?dis=yes'" style="padding:4px;width:100%">LogOut</button>
+            <divider></divider>
+            <form method="post" action="/userSettings">
+                <button type="submit">Settings</button>
+            </form>
+            <divider></divider>
+         </div>
+      </div>
+         
+      </script>
+      </div>
+      <!--add Item button -->
+      <button id="addItem" class="button">Add Item</button>
+      <div id="simpleModal" class="modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <span class="closeBtn">&times;</span>
+               <h2>Add Item</h2>
+            </div>
+            <form class="Item" action="/addItem" method="post">
+               Item Name <br>
+               <input type="text" name="itemName" /> <br>
+               price<br>
+               <input type="number" min="0" name="price" /><br>
+               Quantity <br>
+			   <input type="number" min="0" name="quantity" /><br>  
+               Item Status<br>
+			   <input type="text" name="itemStatus" /><br>
+               supplier<br>
+               <input type="text" name="supplier" /><br>
+               category<br>
+               <input type="text" name="category" /><br>
+               <button id="add" type ="submit">Add</a></button>
+            </form>
+            <script src="home.js"></script>
+         </div>
+      </div>
+      <!-- add category button -->
+      <button id="addCategory" class="button">Add Category</button>
+      <div id="categoryModal" class="modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <span class="closeBtn">&times;</span>
+               <h2>Add Category</h2>
+            </div>
+            <form class="Category" action="/addCategory" method="post">
+                Category Name <br>
+                <input type="text" name="categoryName" /> <br>
+                <button type ="submit" id ="addCatgy">Add</button>
+            </form>
+            <script src="home.js"></script>
+         </div>
+      </div>
+
+      <!-- edit current Item button-->
+      <button id = "editItem" class="button" >edit Item</button>
+      <div id="editItemModal" class="modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <span class="editItemClose">&times;</span>
+               <h2>Edit Item</h2>
+            </div>
+            <form class="EItem" action="/editItem" method="post">
+               Item Name <br>
+               <input type="text" name="itemName" /> <br>
+               price<br>
+               <input type="number" min="0" name="price" /><br>
+               Quantity <br>
+               <input type="number" min="0" name="quantity" /><br>
+               Item Status<br>
+               <input type="text" name="itemStatus" /><br>
+               supplier<br>
+               <input type="text" name="supplier" /><br>
+               category<br>
+               <input type="text" name="category" /><br>
+               <button id="updateItem" type ="submit">
+               Update</a></button>
+            </form>
+            <script src="home.js"></script>
+         </div>
+      </div>
+      <div class="table">
+        <h1 Database></h1>
+        <u1 class ="inventory">
+            <% for(var i=0; i<user.length; i++) {%>
+                <li class="list-group-item">
+                 <span>email: </span><%= user[i].email %>
+                <br/>
+                <span>passwd: </span><%= user[i].passwd %>
+         </li>
+         <% } %>
+         </ul>
+        </div>
+   </body>
+</html>
