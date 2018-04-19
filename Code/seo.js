@@ -31,40 +31,42 @@ res.render('login.html', function(err, login) {
   res.send(login);
 });
 });
-app.get('/database.html',function(req,res){
-  var sql = "Select *from jngu.User";
+/* process login form */
+app.post('/login', function(req, res, next) {
+  email = req.body.email;
+  var pw = req.body.pw;
+  console.log("post received: %s %s", email, pw);
+  var realPassword ;
+  var sql = "select passwd from  jngu.User where email = '"+ email +"'";
+  
+  con.query(sql,function(err,result){
+  if(result.length>0){
+  realPassword = result[0].passwd; 
+  }
+  console.log(realPassword);
+  if(realPassword==pw){
+    console.log("realP = pw ");
+   
+    res.redirect('/home');
+    res.end();
+  }
+  else{
+    res.redirect(req.get('referer'));
+  }
+  });
+  });
+  
+app.get('/home',function(req,res){
+  var sql = "select d.email, a.categoryName, c.itemName, c.qty, c.price, c.supplier from jngu.Category a join " +
+  "jngu.Inventory b on b.inventoryId = a.inventoryId join jngu.Item c on a.categoryId = c.categoryId " +
+	"join jngu.User d on d.email = b.email where d.email = '" + email +  "'" ;
     con.query(sql,function(err,result){
-      console.log("inside database");
       if(err) throw err;
       else{
         res.render('database.ejs',{user:result});
       }
     });
   });
-/* process login form */
-app.post('/login', function(req, res, next) {
-email = req.body.email;
-var pw = req.body.pw;
-console.log("post received: %s %s", email, pw);
-var realPassword ;
-var sql = "select passwd from  jngu.User where email = '"+ email +"'";
-
-con.query(sql,function(err,result){
-if(result.length>0){
-realPassword = result[0].passwd;
-}
-console.log(realPassword);
-if(realPassword==pw){
-  console.log("realP = pw ");
- 
-  res.redirect('/database.html');
-  res.end();
-}
-else{
-  res.redirect(req.get('referer'));
-}
-});
-});
 
 
 /* process registration form  */
@@ -120,7 +122,7 @@ app.post('/addItem',function(req,res,next){
 		});
 	 
   });
-res.redirect('/database.html');
+res.redirect('/home');
 });
 
 //add Category button
@@ -143,7 +145,7 @@ app.post('/addCategory',function(req,res,next){
 //     console.log('return to home page');
 //     res.send(home);
 //  });
-res.redirect('/database.html');
+res.redirect('/home');
 
 });
 //edit Item
@@ -155,11 +157,32 @@ app.post('/editItem',function(req,res,next){
   var quantity = req.body.quantity;
   var supplier = req.body.supplier;
   var category = req.body.category;
-  console.log(itemName);
-  res.redirect('/database.html');
+  
+  if(price != 0){
+	  var sql = "update jngu.Item set price = '"+ price +"' where itemName = '"+ itemName +"'";
+	  con.query(sql,function(err,result){
+	  if(err) throw err;
+  });
+  }
+  if(quantity != 0){
+	  var sql = "update jngu.Item set qty = '"+ quantity +"'where itemName = '"+ itemName +"'";
+	  con.query(sql,function(err,result){
+	  if(err) throw err;
+  });
+  }
+  if(supplier != 0 ){
+	  var sql = "update jngu.Item set supplier = '"+ supplier +"'where itemName = '"+ itemName +"'";
+	  con.query(sql,function(err,result){
+	  if(err) throw err;
+  });
+  }
+  res.render('home.html', function(err, home) {
+    console.log('return to home page');
+
+  res.redirect('/home');
 
 });
-
+});
 
 app.post('/userSettings',function(req,res){
   res.render('userSettings.html',function(err,userSettings){
@@ -170,12 +193,12 @@ app.post('/userSettings',function(req,res){
 
 app.post('/updateUser',function(req,res,next){
 console.log("update user info");
-res.redirect('/database.html');
+res.redirect('/home');
 
 });
 
 app.post('/home',function(req,res,next){
- res.redirect('/database.html');
+ res.redirect('/home');
 
 });
 
@@ -198,4 +221,3 @@ app.set('view engine', 'html');
 
 app.get('*', function(req, res){
 });
-
