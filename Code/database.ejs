@@ -79,8 +79,12 @@
             </div>
             <form class="EItem" action="/editItem" method="post">
                Item Name <br>
-               <input type="text" name="itemName" /> <br>
-               price<br>
+               <select name="itemName" /> <br>
+               <% for (var i = 0; i < user.length;i++) { %>
+               <option><%= user[i].itemName %></option> 
+                <% } %>
+               </select>
+               <br>price<br>
                <input type="number" min="0" name="price" /><br>
                Quantity <br>
                <input type="number" min="0" name="quantity" /><br>
@@ -100,12 +104,15 @@
         <h1 Item></h1>
         <table>
             <tr>
-            <th>Email</th><th>Passwd</th><th></th>
+            <th>Item Name</th><th>Price</th><th>Quantity</th><th>supplier</th><th>Category</th>
             </tr>
             <% for (var i = 0; i < user.length;i++) { %>
                 <tr>
-                <td><%= user[i].email %></td>
-                <td><%= user[i].passwd %></td>
+                <td><%= user[i].itemName %></td>
+                <td><%= user[i].price %></td>
+                <td><%= user[i].qty %></td>
+                <td><%= user[i].supplier %></td>
+                <td><%= user[i].categoryName %></td>
                 </tr>    
                 <% } %>
         </table>
