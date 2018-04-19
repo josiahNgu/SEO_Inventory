@@ -186,7 +186,7 @@ router.post('/updateUser',function(req,res,next){
 	con.query(sql,function(err,result){
 		if(err) throw err;
 		var addressId = result.insertId;
-		var sql1 = "insert into jngu.UserInfo (email,firstName,middleName,lastName,creationTime,addressId) values ('" + email + "','" + firstName + "','" + middleName + "','" + lastName + "',CURRENT_TIMESTAMP,'" + addressId + "')";
+		var sql1 = "insert into jngu.UserInfo (email,firstName,middleName,lastName,phoneNumber,creationTime,addressId) values ('" + email + "','" + firstName + "','" + middleName + "','" + lastName + "','"+ phoneNumber +"',CURRENT_TIMESTAMP,'" + addressId + "')";
 		con.query(sql1,function(err,result){
 			if(err) throw err;
 		});
