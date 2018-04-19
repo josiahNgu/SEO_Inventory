@@ -120,10 +120,7 @@ app.post('/addItem',function(req,res,next){
 		});
 	 
   });
-  res.render('database.html', function(err, home) {
-    console.log('return to home page');
-    res.send(home);
-  });
+res.redirect('/database.html');
 });
 
 //add Category button
