@@ -95,7 +95,7 @@ left:70%;
   top:20%;
   left: 20%;
 }
-#addItem:hover,#catgyBtn:hover, #editCategoryN:hover , #editItem:hover, #deleteItem:hover{
+#addItem:hover,#catgyBtn:hover, #editCategoryN:hover , #editItem:hover, #deleteItem:hover, #addCategory:hover{
   background:black;
   color: white;
 }
@@ -361,7 +361,6 @@ table {
   height:100%;
   overflow-y:scroll;
   display: block;
-  align: center;
 }
 
 @-moz-document url-prefix() {
