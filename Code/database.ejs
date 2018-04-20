@@ -130,15 +130,15 @@
         <h1 Item></h1>
         <table>
             <tr>
-            <th>Item Name</th><th>Price</th><th>Quantity</th><th>Supplier</th><th>Category</th>
+            <th>Item Name</th><th>Category</th><th>Supplier</th><th>Price</th><th>Quantity</th>
             </tr>
             <% for (var i = 0; i < user.length;i++) { %>
                 <tr>
                 <td><%= user[i].itemName %></td>
+                <td><%= user[i].categoryName %></td>
+                <td><%= user[i].supplier %></td>
                 <td><%= user[i].price %></td>
                 <td><%= user[i].qty %></td>
-                <td><%= user[i].supplier %></td>
-                <td><%= user[i].categoryName %></td>
                 </tr>    
                 <% } %>
         </table>
