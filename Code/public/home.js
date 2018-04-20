@@ -13,7 +13,7 @@ var categoryB = document.getElementById('addCategory');
 var closeBtn1 = document.getElementsByClassName('closeBtn1')[0];
 
 categoryB.addEventListener('click',openCatgy);
-closeBtn1.addEventListener('click',closeCategory);
+closeBtn1.addEventListener('click',closeCatgy);
 // var catModal = document.getElementById('categoryModal');
 // var catBtn = document.getElementById('addCategory');
 // var closecat = document.getElementsByClassName('closeBtn')[0];
