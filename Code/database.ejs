@@ -42,7 +42,7 @@
                Quantity <br>
 		<input type="number" min="0" name="quantity" /><br>  
                Item Status<br>
-		<input type="text" name="itemStatus" /><br>
+		<input type="number" name="itemStatus" /><br>
                supplier<br>
                <input type="text" name="supplier" /><br>
                category<br>
@@ -93,7 +93,7 @@
                Quantity <br>
                <input type="number" min="0" name="quantity" /><br>
                Item Status<br>
-               <input type="text" name="itemStatus" /><br>
+               <input type="number" name="itemStatus" /><br>
                supplier<br>
                <input type="text" name="supplier" /><br>
                category<br>
@@ -138,7 +138,12 @@
                 <td><%= user[i].categoryName %></td>
                 <td><%= user[i].supplier %></td>
                 <td>$ <%= user[i].price %></td>
-                <td><%= user[i].itemStatus %></td>
+                <!--<td><%= user[i].itemStatus %></td>-->
+                <% if( user[i].itemStatus > user[i].qty ) { %>
+                <td style="background:red;"><%= "Low Stock" %></td>
+                <% } else { %>
+                <td style="background:green;"><%= "High Stock" %></td>
+                <% } %>
                 <td><%= user[i].qty %></td>
                 </tr>    
                 <% } %>
