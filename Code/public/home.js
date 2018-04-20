@@ -68,6 +68,7 @@ function outsideClick(e){
     if(e.target == deleteModal){
        deleteModal.style.display = "none";
 }
+}
 
 //function to category modal
 function openCatgy(){
