@@ -10,10 +10,10 @@ closeBtn.addEventListener('click',closeModal);
 //add category Modal
 var categoryModal = document.getElementById('categoryModal');
 var categoryB = document.getElementById('addCategory');
-var closeBtn1 = document.getElementsByClassName('closeBtn1')[0];
+var categoryClose = document.getElementsByClassName('categoryClose')[0];
 
 categoryB.addEventListener('click',openCatgy);
-closeBtn1.addEventListener('click',closeCatgy);
+categoryClose.addEventListener('click',closeCatgy);
 // var catModal = document.getElementById('categoryModal');
 // var catBtn = document.getElementById('addCategory');
 // var closecat = document.getElementsByClassName('closeBtn')[0];
@@ -32,10 +32,10 @@ closeEdit.addEventListener('click',closeEditItem);
 //delete item Modal
 var deleteModal = document.getElementById('deleteModal');
 var deleteItem = document.getElementById('deleteItem');
-var closeDeleteItem = document.getElementsByClassName('deleteItemClose');
+var deleteItemClose = document.getElementsByClassName('deleteItemClose')[0];
 
 deleteItem.addEventListener('click',openDeleteItem);
-closeDeleteItem.addEventListener('click',closeDeleteItem);
+deleteItemClose.addEventListener('click',closeDeleteItem);
 
 //edit category modal
 // var editCatgy = document.getElementById('editCategoryMdl');
@@ -65,9 +65,6 @@ function outsideClick(e){
     if(e.target == editItem){
         editItem.style.display ='none';
     }
-    if(e.target == deleteModal){
-       deleteModal.style.display = "none";
-}
 }
 
 //function to category modal
