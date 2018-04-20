@@ -29,6 +29,13 @@ var closeEdit = document.getElementsByClassName('editItemClose')[0];
 editBtn.addEventListener('click',openEditItem);
 closeEdit.addEventListener('click',closeEditItem);
 
+//delete item Modal
+var deleteModal = document.getElementById('deleteModal');
+var deleteItem = document.getElementById('deleteItem');
+var closeDeleteItem = document.getElementsByClassName('deleteItemClose');
+
+deleteItem.addEventListener('click',openDeleteItem);
+closeDeleteItem.addEventListener('click',closeDeleteItem);
 
 //edit category modal
 // var editCatgy = document.getElementById('editCategoryMdl');
@@ -85,4 +92,12 @@ function openEditItem(){
 
 function closeEditItem(){
     editItem.style.display = 'none';
+}
+//function to delete item modal
+function openDeleteItem(){
+    deleteModal.style.display = 'block';
+}
+
+function closeDeleteItem(){
+    deleteModal.style.display = 'none';
 }
