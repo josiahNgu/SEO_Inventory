@@ -57,13 +57,18 @@ app.post('/login', function(req, res, next) {
   });
   
 app.get('/home',function(req,res){
-  var sql = "select d.email, a.categoryName, c.itemName, c.qty, c.price, c.supplier from jngu.Category a join " +
+   var sql = "select d.email, a.categoryName, c.itemName, c.qty, c.price, c.supplier from jngu.Category a join " +
   "jngu.Inventory b on b.inventoryId = a.inventoryId join jngu.Item c on a.categoryId = c.categoryId " +
 	"join jngu.User d on d.email = b.email where d.email = '" + email +  "'" ;
-    con.query(sql,function(err,result){
+	var sql1 = "select categoryName from jngu.Category";
+    con.query(sql,function(err,result1){
       if(err) throw err;
       else{
-        res.render('database.ejs',{user:result});
+		  con.query(sql1,function(err,result2){
+			 if(err) throw err;
+			res.render('database.ejs',{user:result1, user2:result2});			 
+		  });
+        
       }
     });
   });

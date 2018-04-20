@@ -46,9 +46,9 @@
                supplier<br>
                <input type="text" name="supplier" /><br>
                category<br>
-               <select name="itemName"/> <br>
-               <% for (var i = 0; i < user.length;i++) { %>
-               <option><%= user[i].categoryName%></option> 
+               <select name="category"/> <br>
+               <% for (var i = 0; i < user2.length;i++) { %>
+               <option><%= user2[i].categoryName%></option> 
                 <%}%>
                </select> <br>
                <button id="add" type ="submit">Add</a></button>
