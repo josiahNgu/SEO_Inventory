@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>SEOinventory</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <!-- <script src="backup.js"></script> -->
+</head>
+<body>
+    <p id="topForm">SEOinventory</p>
+    <div class="login-page">
+        <!--register an account form-->
+        <div class ="form" >
+        <form class ="register-form"  action="/signup" method="post">
+            <input type="text" placeholder="email" id='email1' name="email1" required/>
+            <input type="password" placeholder="password" id='pw1' name="pw1" required/>
+            <input type="password" placeholder="password again" id='pw2' name="pw2" required/>
+			<button class="btn" type="submit">Sign Up</button>
+            <p class="message">Have an account? <a href="#">Log In</a></p>
+        </form>
+        <!--login form-->
+        <form class="login-form" action="/login" method="post">
+            <input type="text" placeholder="email" id='email' name="email" required/>
+            <input type="password" placeholder="password" id='pw' name="pw" required/>
+			<button class="btn" type="submit">Login</button>
+            <p class="message">Not Registered? <a href="#">Sign up </a></p>
+        </form>
+        </div>
+    </div>    
+
+      <!--function to bring up sign up page or login page when user click on the href of sign up and sign in    login(document.getElementById('email').value,document.getElementById('pw').value);-->
+      <script>
+      $('.message a').click(function(){
+          $('form').animate({height: "toggle",opacity:"toggle"});
+      });
+      </script>
+	<script>
+      email1.addEventListener('invalid', function () {
+          if (this.value.trim() !== '') {
+            this.setCustomValidity("'" + this.value + "' is not a valid email");
+          }
+      }, false);
+      </script>
+</body>
+</html>

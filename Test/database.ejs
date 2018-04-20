@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+ 
+ 
+   <head>
+      <meta charset="utf-8"/>
+      <title>SEOinventory</title>
+      <link rel="stylesheet" type="text/css" href="/css/homepageStyle.css">
+      <link rel="script"  href="/home.js">
+   </head>
+   <body>
+      <p id="nameCorner">SEOinventory </p>
+      <div class="home-page">
+         <!--register an account form-->
+         <div class="corner">
+	    <form method="post" action="/logout">
+                <button type="submit">Logout</button>
+            </form>
+	    <divider></divider>
+            <form method="post" action="/userSettings">
+                <button type="submit">Settings</button>
+            </form>
+            <divider></divider>
+         </div>
+      </div>
+         
+      </script>
+      </div>
+      <!--add Item button -->
+      <button id="addItem" class="button">Add Item</button>
+      <div id="simpleModal" class="modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <span class="closeBtn">&times;</span>
+               <h2>Add Item</h2>
+            </div>
+            <form class="Item" action="/addItem" method="post">
+               Item Name <br>
+               <input type="text" name="itemName" /> <br>
+               price<br>
+               <input type="number" min="0" name="price" step="0.001" /><br>
+               Quantity <br>
+		<input type="number" min="0" name="quantity" /><br>  
+               Item Status<br>
+		<input type="number" name="itemStatus" /><br>
+               supplier<br>
+               <input type="text" name="supplier" /><br>
+               category<br>
+               <select name="category"/> <br>
+               <% for (var i = 0; i < user2.length;i++) { %>
+               <option><%= user2[i].categoryName%></option> 
+                <%}%>
+               </select> <br>
+               <button id="add" type ="submit">Add</a></button>
+            </form>
+            <script src="home.js"></script>
+         </div>
+      </div>
+      <!-- add category button -->
+      <button id="addCategory" class="button">Add Category</button>
+      <div id="categoryModal" class="modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <span class="categoryClose">&times;</span>
+               <h2>Add Category</h2>
+            </div>
+            <form class="Category" action="/addCategory" method="post">
+                Category Name <br>
+                <input type="text" name="categoryName" /> <br>
+                <button type ="submit" id ="addCatgy">Add</button>
+            </form>
+            <script src="home.js"></script>
+         </div>
+      </div>
+
+      <!-- edit current Item button-->
+      <button id = "editItem" class="button" >edit Item</button>
+      <div id="editItemModal" class="modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <span class="editItemClose">&times;</span>
+               <h2>Edit Item</h2>
+            </div>
+            <form class="EItem" action="/editItem" method="post">
+               Item Name <br>
+               <select name="itemName" /> <br>
+               <% for (var i = 0; i < user.length;i++) { %>
+               <option><%= user[i].itemName %></option> 
+                <% } %>
+               </select>
+               <br>price<br>
+               <input type="number" min="0" name="price" /><br>
+               Quantity <br>
+               <input type="number" min="0" name="quantity" /><br>
+               Item Status<br>
+               <input type="number" name="itemStatus" /><br>
+               supplier<br>
+               <input type="text" name="supplier" /><br>
+               category<br>
+               <input type="text" name="category" /><br>
+               <button id="updateItem" type ="submit">
+               Update</a></button>
+            </form>
+            <script src="home.js"></script>
+         </div>
+      </div>
+
+      <button id ="deleteItem" class="button" >delete Item</button>
+      <div id="deleteModal" class="modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <span class="deleteItemClose">&times;</span>
+               <h2>Delete Item</h2>
+            </div>
+            <form class="DItem" action="/deleteItem" method="post">
+               Item Name <br>
+               <select name="itemName" /> <br>
+               <% for (var i = 0; i < user.length;i++) { %>
+               <option><%= user[i].itemName %></option> 
+                <% } %>
+               </select> <br>
+               <button id="updateItem" type ="submit">
+               Delete</a></button>
+            </form>
+            <script src="home.js"></script>
+         </div>
+      </div>
+
+      <div class="table">
+        <h1 Item></h1>
+        <table>
+            <tr>
+            <th>Item Name</th><th>Category</th><th>Supplier</th><th>Price</th><th>Status</th><th>Quantity</th>
+            </tr>
+            <% for (var i = 0; i < user.length;i++) { %>
+                <tr>
+                <td><%= user[i].itemName %></td>
+                <td><%= user[i].categoryName %></td>
+                <td><%= user[i].supplier %></td>
+                <td>$ <%= user[i].price %></td>
+                <!--<td><%= user[i].itemStatus %></td>-->
+                <% if( user[i].itemStatus > user[i].qty ) { %>
+                <td style="background:#D00000;"><%= "Low Stock" %></td>
+                <% } else { %>
+                <td style="background:#008A2C;"><%= "High Stock" %></td>
+                <% } %>
+                <td><%= user[i].qty %></td>
+                </tr>    
+                <% } %>
+        </table>
+        </div>
+   </body>
+</html>
