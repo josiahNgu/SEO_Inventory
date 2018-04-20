@@ -361,6 +361,9 @@ table {
   height:100%;
   overflow-y:scroll;
   display: block;
+  position: relative;
+top: 20%;
+left: -8%;
 }
 
 @-moz-document url-prefix() {
