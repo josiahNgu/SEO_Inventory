@@ -204,8 +204,28 @@ app.post('/userSettings',function(req,res){
 
 app.post('/updateUser',function(req,res,next){
 console.log("update user info");
-res.redirect('/home');
-
+var firstName = req.body.firstName;
+	var middleName = req.body.middleName;
+	var lastName = req.body.lastName;
+	var phoneNumber = req.body.phoneNumber;
+	var street = req.body.street;
+	var city = req.body.city;
+	var state = req.body.state;
+	var zipcode = req.body.zip;
+	var country = req.body.country;
+	console.log(firstName);
+	var sql = "insert into jngu.Address (street,city,state, zipcode,country) values ('" + street + "','" + city + "','" + state + "','" + zipcode + "','" + country + "')";
+	con.query(sql,function(err,result){
+		if(err) throw err;
+		var addressId = result.insertId;
+		var sql1 = "insert into jngu.UserInfo (email,firstName,middleName,lastName,phoneNumber,creationTime,addressId) values ('" + email + "','" + firstName + "','" + middleName + "','" + lastName + "','"+ phoneNumber +"',CURRENT_TIMESTAMP,'" + addressId + "')";
+		con.query(sql1,function(err,result){
+			if(err) throw err;
+		});
+	});
+ res.render('home.html',function(err,home){
+ 	res.redirect('/home');
+ });
 });
 
 app.post('/deleteItem',function(req,res,next){
