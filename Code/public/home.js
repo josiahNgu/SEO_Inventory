@@ -10,7 +10,7 @@ closeBtn.addEventListener('click',closeModal);
 //add category Modal
 var categoryModal = document.getElementById('categoryModal');
 var categoryB = document.getElementById('addCategory');
-var closeCategory = document.getElementsByClassName('closeBtn')[0];
+var closeBtn1 = document.getElementsByClassName('closeBtn1')[0];
 
 categoryB.addEventListener('click',openCatgy);
 closeCategory.addEventListener('click',closeCategory);
