@@ -103,10 +103,6 @@ app.post('/signup', function(req, res, next) {
       });
     
   }
-	//update to throw error message to user
-     res.render('login.html', function(err, login) {
-    res.send(login);
-    }); 
   });
  
 //Note: category have to be created before adding item 
