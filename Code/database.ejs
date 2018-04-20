@@ -46,9 +46,9 @@
                supplier<br>
                <input type="text" name="supplier" /><br>
                category<br>
-               <select name="category"/> <br>
-               <% for (var i = 0; i < user2.length;i++) { %>
-               <option><%= user2[i].categoryName%></option> 
+               <select name="itemName"/> <br>
+               <% for (var i = 0; i < user.length;i++) { %>
+               <option><%= user[i].categoryName%></option> 
                 <%}%>
                </select> <br>
                <button id="add" type ="submit">Add</a></button>
@@ -61,7 +61,7 @@
       <div id="categoryModal" class="modal">
          <div class="modal-content">
             <div class="modal-header">
-               <span class="closeBtn1">&times;</span>
+               <span class="categoryClose">&times;</span>
                <h2>Add Category</h2>
             </div>
             <form class="Category" action="/addCategory" method="post">
@@ -119,7 +119,7 @@
                <option><%= user[i].itemName %></option> 
                 <% } %>
                </select> <br>
-               <button id="deleteItemAct" type ="submit">
+               <button id="updateItem" type ="submit">
                Delete</a></button>
             </form>
             <script src="home.js"></script>
