@@ -155,21 +155,6 @@ router.post('/editItem',function(req,res,next){
 });
 });
 
-router.post('/deleteItem',function(req,res,next){
-  console.log("delete Item");
-  var itemName = req.body.itemName;
-  //var itemStatus = req.body.itemStatus;
-  //var price = req.body.price;
-  //var quantity = req.body.quantity;
-  //var supplier = req.body.supplier;
-  //var category = req.body.category;
-  console.log(itemName);
-  res.render('home.html', function(err, home) {
-    console.log('return to home page');
-    res.send(home);
-});
-});
-
 router.post('/editCategory',function(req,res,next){
   console.log("edit catgy");
   var CategoryName = req.body.newCatgyN;
