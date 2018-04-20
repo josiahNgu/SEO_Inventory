@@ -140,9 +140,9 @@
                 <td>$ <%= user[i].price %></td>
                 <!--<td><%= user[i].itemStatus %></td>-->
                 <% if( user[i].itemStatus > user[i].qty ) { %>
-                <td style="background:red;"><%= "Low Stock" %></td>
+                <td style="background:#D00000;"><%= "Low Stock" %></td>
                 <% } else { %>
-                <td style="background:green;"><%= "High Stock" %></td>
+                <td style="background:#008A2C;"><%= "High Stock" %></td>
                 <% } %>
                 <td><%= user[i].qty %></td>
                 </tr>    

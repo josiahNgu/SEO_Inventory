@@ -181,6 +181,12 @@ app.post('/editItem',function(req,res,next){
 	  if(err) throw err;
   });
   }
+  if(itemStatus != 0 ){
+	  var sql = "update jngu.Item set itemStatus = '"+ itemStatus +"'where itemName = '"+ itemName +"'";
+	  con.query(sql,function(err,result){
+	  if(err) throw err;
+  });
+  }
   res.render('home.html', function(err, home) {
     console.log('return to home page');
 
