@@ -214,6 +214,9 @@ var firstName = req.body.firstName;
 	var zipcode = req.body.zip;
 	var country = req.body.country;
 	console.log(firstName);
+	var sql2 = "select * from jngu.UserInfo where email = '" + email + "'";
+	con.query(sql2,function(err,result){
+		if(result.length == 0){
 	var sql = "insert into jngu.Address (street,city,state, zipcode,country) values ('" + street + "','" + city + "','" + state + "','" + zipcode + "','" + country + "')";
 	con.query(sql,function(err,result){
 		if(err) throw err;
@@ -222,6 +225,8 @@ var firstName = req.body.firstName;
 		con.query(sql1,function(err,result){
 			if(err) throw err;
 		});
+	});
+		}
 	});
  res.render('home.html',function(err,home){
  	res.redirect('/home');
