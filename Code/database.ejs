@@ -138,7 +138,12 @@
                 <td><%= user[i].categoryName %></td>
                 <td><%= user[i].supplier %></td>
                 <td>$ <%= user[i].price %></td>
-                <td><%= user[i].itemStatus %></td>
+		<td><% if(user[i].qty >10){%>
+                     	High
+                  <% } else{ %>  
+                        LOW
+                      <% } %>
+                </td>
                 <td><%= user[i].qty %></td>
                 </tr>    
                 <% } %>
