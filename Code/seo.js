@@ -206,6 +206,22 @@ res.redirect('/home');
 
 });
 
+app.post('/deleteItem',function(req,res,next){
+	console.log("delete Item");
+	var itemName = req.body.itemName;
+	console.log(itemName);
+	
+	var sql = "delete from jngu.Item where itemName = '"+ itemName + "'";
+	con.query(sql,function(err,result){
+		if(err) throw err;
+	});	
+	res.render('home.html', function(err, home){
+		console.log('return to home page');
+		
+	res.redirect('/home');
+	});	
+});
+
 app.post('/home',function(req,res,next){
  res.redirect('/home');
 
