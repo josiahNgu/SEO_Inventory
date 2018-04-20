@@ -60,7 +60,7 @@ app.get('/home',function(req,res){
    var sql = "select d.email, a.categoryName, c.itemName, c.qty, c.price, c.supplier from jngu.Category a join " +
   "jngu.Inventory b on b.inventoryId = a.inventoryId join jngu.Item c on a.categoryId = c.categoryId " +
 	"join jngu.User d on d.email = b.email where d.email = '" + email +  "'" ;
-	var sql1 = "select categoryName from jngu.Category";
+	var sql1 = "select a.categoryName from jngu.Category a join jngu.Inventory b on a.inventoryId = b.inventoryId where b.email = '" + email +"'";
     con.query(sql,function(err,result1){
       if(err) throw err;
       else{
