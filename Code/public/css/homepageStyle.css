@@ -101,7 +101,7 @@ left:70%;
 }
 
 /*add item button inside the pop up form of add item*/
-#add, #addCatgy ,#updateCatgyN , #updateItem, #deleteItem {
+#add, #addCatgy ,#updateCatgyN , #updateItem, #deleteItemAct {
   font-family: "Roboto", 'Courier New', Courier, monospace;
   text-transform: uppercase;
   color: goldenrod; 
@@ -112,7 +112,7 @@ left:70%;
   font-size: 14px;
   cursor: pointer;
 }
-#add:hover , #addCatgy:hover ,#updateCatgyN:hover ,#updateItem:hover, #deleteItem:hover {
+#add:hover , #addCatgy:hover ,#updateCatgyN:hover ,#updateItem:hover, #deleteItemAct:hover {
   background:black;
   color: white;
   border: white;
