@@ -25,7 +25,7 @@ line-height: 1.6;
     cursor: pointer;
  position: absolute;
  top: 15%;
- left: 20%;
+ left: 30%;
 
 }
 #editItem  {
@@ -40,7 +40,23 @@ line-height: 1.6;
   cursor: pointer;
 position: absolute;
 top: 15%;
-left: 30%;
+left: 40%;
+
+}
+
+#deleteItem  {
+  font-family: "Roboto", 'Courier New', Courier, monospace;
+  text-transform: uppercase;
+  outline: 0;
+  background:white;
+  border: 2px solid goldenrod;
+  padding: 15px;
+  color: goldenrod;
+  font-size: 14px;
+  cursor: pointer;
+position: absolute;
+top: 15%;
+left: 50%;
 
 }
 
@@ -56,7 +72,7 @@ left: 30%;
   cursor: pointer;
 position: absolute;
   top: 15%;
-  left:40%;
+  left:60%;
 
 }
 #editCategoryN {
@@ -71,7 +87,7 @@ position: absolute;
   cursor: pointer;
 position: absolute;
 top: 15%;
-left:50%;
+left:70%;
 
 }
 .table{
@@ -79,13 +95,13 @@ left:50%;
   top:20%;
   left: 20%;
 }
-#addItem:hover,#catgyBtn:hover, #editCategoryN:hover , #editItem:hover{
+#addItem:hover,#catgyBtn:hover, #editCategoryN:hover , #editItem:hover, #deleteItem:hover{
   background:black;
   color: white;
 }
 
 /*add item button inside the pop up form of add item*/
-#add, #addCatgy ,#updateCatgyN , #updateItem {
+#add, #addCatgy ,#updateCatgyN , #updateItem, #deleteItem {
   font-family: "Roboto", 'Courier New', Courier, monospace;
   text-transform: uppercase;
   color: goldenrod; 
@@ -96,7 +112,7 @@ left:50%;
   font-size: 14px;
   cursor: pointer;
 }
-#add:hover , #addCatgy:hover ,#updateCatgyN:hover ,#updateItem:hover {
+#add:hover , #addCatgy:hover ,#updateCatgyN:hover ,#updateItem:hover, #deleteItem:hover {
   background:black;
   color: white;
   border: white;
@@ -129,7 +145,7 @@ input[type = text], input[type = number] {
     animation-name:modalOpen;
     animation-duration: 1.9s;
 }
-  .closeBtn , .catClose , .EcatClose , .editItemClose{
+  .closeBtn , .catClose , .EcatClose , .editItemClose, .deleteItemClose{
       color: black;
       float:right;
       right: 16px;
@@ -148,6 +164,7 @@ input[type = text], input[type = number] {
 /*end of pop up form style*/
 .home-page{
   width: 1000px;
+  height: 1000px;
   padding: 0 0 0;
   margin-top: 10px; 
 }
@@ -301,7 +318,8 @@ input[type = text], input[type = number] {
   z-index: 1;
   border: 2px solid goldenrod;       
   background: transparent;
-  width: 80%px;
+  width: 80%;
+  height: 100%;
   margin: 0 auto 50px;
   padding:20px;
   text-align: center;
@@ -337,10 +355,26 @@ th, td {
 
 table {
   border-collapse: collapse;
-  width: 1000px;
-  height:500px;
+  border: 2px solid goldenrod;
+  background:white;  
+  width: 100%;
+  height:100%;
   overflow-y:scroll;
   display: block;
+  left: 50%;
+}
+
+@-moz-document url-prefix() {
+  html,body{overflow: hidden !important;}
+}
+
+table::-webkit-scrollbar {
+  display: none;
+}
+
+::-webkit-scrollbar {
+  width: 0px;  /* remove scrollbar space */
+  background: transparent;  /* optional: just make scrollbar invisible */
 }
 
 th{

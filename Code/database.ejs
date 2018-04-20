@@ -104,11 +104,33 @@
             <script src="home.js"></script>
          </div>
       </div>
+
+      <button id ="deleteItem" class="button" >delete Item</button>
+      <div id="deleteItemModal" class="modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <span class="deleteItemClose">&times;</span>
+               <h2>Delete Item</h2>
+            </div>
+            <form class="DItem" action="/deleteItem" method="post">
+               Item Name <br>
+               <select name="itemName" /> <br>
+               <% for (var i = 0; i < user.length;i++) { %>
+               <option><%= user[i].itemName %></option> 
+                <% } %>
+               </select> <br>
+               <button id="updateItem" type ="submit">
+               Delete</a></button>
+            </form>
+            <script src="home.js"></script>
+         </div>
+      </div>
+
       <div class="table">
         <h1 Item></h1>
         <table>
             <tr>
-            <th>Item Name</th><th>Price</th><th>Quantity</th><th>supplier</th><th>Category</th>
+            <th>Item Name</th><th>Price</th><th>Quantity</th><th>Supplier</th><th>Category</th>
             </tr>
             <% for (var i = 0; i < user.length;i++) { %>
                 <tr>

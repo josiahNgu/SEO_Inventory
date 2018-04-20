@@ -124,6 +124,22 @@
             <script src="home.js"></script>
          </div>
       </div>
+      <button id = "deleteItem" class="button" >edit Item</button>
+      <div id="deleteItemModal" class="modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <span class="editItemClose">&times;</span>
+               <h2>Delete Item</h2>
+            </div>
+            <form class="EItem" action="/editItem" method="post">
+               Item Name <br>
+               <input type="text" name="itemName" /> <br>
+               <button id="deletedItem" type ="submit">
+               Delete</a></button>
+            </form>
+            <script src="home.js"></script>
+         </div>
+      </div>
         <table id="myTableData" onclick="myDetails()" style="width:1000px;height:200px;margin-left:auto;margin-right:auto;">
         <tr>
             <td><b>Category</b></td>
