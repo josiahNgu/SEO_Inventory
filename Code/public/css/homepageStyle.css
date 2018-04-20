@@ -145,7 +145,7 @@ input[type = text], input[type = number] {
     animation-name:modalOpen;
     animation-duration: 1.9s;
 }
-  .closeBtn , .catClose , .EcatClose , .editItemClose, .deleteItemClose{
+  .closeBtn , .catClose , .EcatClose , .editItemClose, .deleteItemClose, .categoryClose{
       color: black;
       float:right;
       right: 16px;
