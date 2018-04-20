@@ -361,15 +361,11 @@ table {
   height:100%;
   overflow-y:scroll;
   display: block;
-  left: 50%;
+  align: center;
 }
 
 @-moz-document url-prefix() {
   html,body{overflow: hidden !important;}
-}
-
-table::-webkit-scrollbar {
-  display: none;
 }
 
 ::-webkit-scrollbar {

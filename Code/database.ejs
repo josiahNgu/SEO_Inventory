@@ -128,16 +128,17 @@
 
       <div class="table">
         <h1 Item></h1>
-        <table>
+        <table align="center">
             <tr>
-            <th>Item Name</th><th>Category</th><th>Supplier</th><th>Price</th><th>Quantity</th>
+            <th>Item Name</th><th>Category</th><th>Supplier</th><th>Price</th><th>Status</th><th>Quantity</th>
             </tr>
             <% for (var i = 0; i < user.length;i++) { %>
                 <tr>
                 <td><%= user[i].itemName %></td>
                 <td><%= user[i].categoryName %></td>
                 <td><%= user[i].supplier %></td>
-                <td><%= user[i].price %></td>
+                <td>$ <%= user[i].price %></td>
+                <td><%= user[i].itemStatus %></td>
                 <td><%= user[i].qty %></td>
                 </tr>    
                 <% } %>
