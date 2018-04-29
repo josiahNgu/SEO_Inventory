@@ -1,10 +1,14 @@
 # SEO Inventory
-The SEO Inventory Systems is a web-based software solution for custom inventory systems.
+Project for CSCE 361 during 2018 Spring semester. Functionality of this website includes: 
+- able to send data onto mySQL database
+- retrieve data from database
+- present data in a well formed pattern
+- ability to categorize items
+
 ***
-S. simple
+To run server:
+On a node.js compatible console, type:
+- node seo.js
 
-
-E. efficient
-
-
-O. organized
+Open up browser and go to:
+- localhost:3000
