@@ -12,3 +12,10 @@ On a node.js compatible console, type:
 
 Open up browser and go to:
 - localhost:3000
+
+***
+TODO:
+- EDIT category
+- preview the user info
+- delete category button
+- removes limitations
